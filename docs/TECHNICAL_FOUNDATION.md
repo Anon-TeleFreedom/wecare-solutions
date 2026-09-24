@@ -2,8 +2,8 @@
 
 ## 1. Phạm vi repository
 
-Repository hiện tại là `webcare-site`, chứa website catalog công khai của
-WebCare DatV.
+Repository hiện tại là `wecare-datv`, chứa website catalog công khai của
+Wecare DatV.
 
 Mục tiêu:
 

@@ -90,6 +90,7 @@ h3 {
 .monitor-preview {
   position: relative;
   padding: 28px;
+  overflow: hidden;
   color: var(--white);
   background: var(--forest-dark);
   border-radius: var(--radius-large);
@@ -162,6 +163,7 @@ h3 {
 }
 
 .uptime-bars {
+  position: relative;
   height: 42px;
   margin-top: 16px;
   display: flex;
@@ -182,6 +184,30 @@ h3 {
 
 .uptime-bars span:nth-child(5n) {
   height: 62%;
+}
+
+.uptime-bars span:nth-child(4n + 1) {
+  --bar-low: 0.35;
+  --bar-peak: 1;
+  --bar-middle: 0.58;
+}
+
+.uptime-bars span:nth-child(4n + 2) {
+  --bar-low: 0.5;
+  --bar-peak: 0.86;
+  --bar-middle: 0.32;
+}
+
+.uptime-bars span:nth-child(4n + 3) {
+  --bar-low: 0.28;
+  --bar-peak: 0.78;
+  --bar-middle: 0.48;
+}
+
+.uptime-bars span:nth-child(4n) {
+  --bar-low: 0.42;
+  --bar-peak: 0.94;
+  --bar-middle: 0.68;
 }
 
 .check-list {

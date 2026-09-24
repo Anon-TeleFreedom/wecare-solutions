@@ -42,10 +42,15 @@
 
   .contact-grid {
     max-width: 720px;
+    gap: 36px;
   }
 }
 
 @media (max-width: 760px) {
+  html {
+    scroll-padding-top: 78px;
+  }
+
   .container {
     width: min(calc(100% - 28px), var(--container));
   }
@@ -102,15 +107,16 @@
   }
 
   .hero {
-    padding: 50px 0 58px;
+    padding: 38px 0 46px;
   }
 
   .hero-grid {
-    gap: 44px;
+    gap: 32px;
   }
 
   h1 {
-    font-size: clamp(38px, 12vw, 52px);
+    margin-bottom: 20px;
+    font-size: clamp(36px, 11vw, 46px);
   }
 
   h2 {
@@ -118,16 +124,25 @@
   }
 
   .hero-description {
-    font-size: 17px;
+    font-size: 16px;
   }
 
   .hero-actions {
-    align-items: flex-start;
+    align-items: stretch;
     flex-direction: column;
+    gap: 14px;
+  }
+
+  .hero-actions .button {
+    width: 100%;
+  }
+
+  .hero-actions .text-link {
+    align-self: center;
   }
 
   .hero-facts {
-    margin-top: 44px;
+    margin-top: 34px;
   }
 
   .hero-facts dt {
@@ -139,8 +154,17 @@
   }
 
   .monitor-preview {
-    padding: 20px;
+    padding: 18px;
     border-radius: 24px;
+  }
+
+  .uptime-panel {
+    margin-top: 22px;
+    padding: 18px;
+  }
+
+  .check-row {
+    padding: 14px 2px;
   }
 
   .problem-grid {
@@ -160,12 +184,38 @@
 
   .section,
   .contact-section {
-    padding: 64px 0;
+    padding: 42px 0;
+  }
+
+  .section-heading {
+    margin-bottom: 28px;
+  }
+
+  .section-heading h2 {
+    font-size: 30px;
   }
 
   .solution-card {
-    padding: 26px;
-    flex-basis: calc(100vw - 64px);
+    min-height: 330px;
+    padding: 22px;
+    flex-basis: calc(100vw - 48px);
+    border-radius: 20px;
+  }
+
+  .solution-card h3 {
+    font-size: 24px;
+  }
+
+  .solution-grid {
+    gap: 12px;
+    padding-inline: 2px;
+  }
+
+  .solution-carousel-footer {
+    margin-top: 10px;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
   }
 
   .process-grid {
@@ -191,7 +241,7 @@
   }
 
   .contact-form {
-    padding: 24px;
+    padding: 20px;
     border-radius: 22px;
   }
 

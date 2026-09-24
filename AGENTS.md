@@ -2,7 +2,8 @@
 
 ## Purpose
 
-This repository contains the public WebCare DatV catalog website.
+This repository contains the public Wecare DatV catalog website. Keep the
+Wecare DatV brand distinct from product names such as WebCare Incident.
 It presents independently developed technical solutions and DevOps tutoring for
 engineering teams, businesses, content teams, and individual learners.
 
@@ -29,8 +30,39 @@ Read only what is needed for the task:
    business operations are relevant.
 6. Read only implementation files directly related to the requested change.
 
-Do not load the entire repository when targeted searches and focused reads are
-enough.
+Do not load the entire repository when targeted searches and focused reads are enough.
+
+## Repository map
+
+This is a static single-page website. Read `docs/CODEBASE.md` for the file-by-file
+ownership map and CSS load order before changes spanning HTML, CSS, and
+JavaScript.
+
+- `website/index.html` owns semantic page content, SEO metadata, CSS/JavaScript
+  entry points, and the Netlify consultation form.
+- `website/assets/css/` contains design tokens and focused stylesheets; retain
+  their load order from `docs/CODEBASE.md`.
+- `website/assets/js/main.js` owns page controls, theme, and consultation form
+  behavior.
+- `website/assets/js/motion.js` owns entrance and scroll reveal, reduced-motion
+  behavior, ambient preview effects, the preview catalog count, and scroll
+  progress.
+- `website/assets/js/solution-carousel.js` owns the looping solution carousel
+  and its current-position indicator. Autoplay timing and easing are configured
+  there; keep animation frame work limited to active transitions.
+- `website/assets/img/` contains small interface assets such as the favicon.
+- `docs/` contains the code map, UI rules, product scope, and technical
+  foundation. Update the relevant source document when a lasting decision
+  changes.
+
+Keep the page content in HTML. Keep each interaction in its owning JavaScript
+file and each component's rules in its owning CSS file. Do not add build tools
+or dependencies for behavior supported by the browser.
+
+For motion, read `docs/UI_GUIDELINES.md` and `docs/CODEBASE.md`. Keep chart and
+page effects in `motion.js`/`motion.css`; pause nonessential work when hidden or
+offscreen, respect `prefers-reduced-motion`, and avoid polling loops or external
+animation dependencies.
 
 ## Current constraints
 

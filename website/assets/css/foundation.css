@@ -4,10 +4,12 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 96px;
 }
 
 body {
   margin: 0;
+  overflow-x: clip;
   color: var(--ink);
   background: var(--paper);
   font-family:
@@ -246,6 +248,16 @@ html[data-theme="dark"] .theme-icon-sun {
   background: var(--forest-dark);
   border-color: var(--forest-dark);
   transform: translateY(-2px);
+}
+
+.button:focus-visible,
+.text-link:focus-visible,
+.site-navigation a:focus-visible,
+.theme-toggle:focus-visible,
+.menu-button:focus-visible,
+.scroll-top:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 4px;
 }
 
 .button-small {

@@ -131,15 +131,16 @@
 }
 
 .contact-section {
-  padding: 88px 0;
+  padding: 68px 0;
   color: var(--white);
   background: var(--forest);
 }
 
 .contact-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(420px, 0.75fr);
-  gap: 110px;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 440px);
+  align-items: center;
+  gap: 72px;
 }
 
 .contact-copy .eyebrow {
@@ -152,15 +153,15 @@
 }
 
 .advisor {
-  margin-top: 32px;
+  margin-top: 24px;
   display: flex;
   align-items: center;
   gap: 14px;
 }
 
 .advisor-avatar {
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
   flex: 0 0 auto;
   object-fit: cover;
   border: 2px solid rgba(255, 255, 255, 0.28);
@@ -183,7 +184,7 @@
 }
 
 .contact-details {
-  margin-top: 36px;
+  margin-top: 28px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -205,7 +206,7 @@
 }
 
 .contact-form {
-  padding: 34px;
+  padding: 28px;
   color: var(--ink);
   background: var(--surface);
   border-radius: var(--radius-large);
@@ -224,11 +225,11 @@
 }
 
 .form-row {
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .form-row label {
-  margin-bottom: 7px;
+  margin-bottom: 5px;
   display: block;
   font-size: 12px;
   font-weight: 800;
@@ -238,7 +239,7 @@
 .form-row select,
 .form-row textarea {
   width: 100%;
-  padding: 13px 14px;
+  padding: 10px 12px;
   color: var(--ink);
   background: var(--paper);
   border: 1px solid #d6d8d1;
@@ -262,15 +263,18 @@
 }
 
 .field-error {
-  min-height: 18px;
-  margin-top: 4px;
+  margin-top: 3px;
   display: block;
   color: var(--danger);
   font-size: 11px;
 }
 
+.field-error:empty {
+  display: none;
+}
+
 .captcha-row {
-  margin: 2px 0 20px;
+  margin: 2px 0 14px;
 }
 
 .captcha-field {
@@ -295,7 +299,7 @@
 }
 
 .form-note {
-  margin: 12px 0 0;
+  margin: 8px 0 0;
   color: var(--ink-soft);
   font-size: 11px;
 }

@@ -1,9 +1,9 @@
-# WebCare DatV
+# Wecare DatV
 
 Website catalog giới thiệu hệ sinh thái solution kỹ thuật và dịch vụ trợ giảng
 DevOps cho đội kỹ thuật, doanh nghiệp, đội nội dung và người học.
 
-Khách hàng có thể mua solution kèm source code và guide, hoặc đặt lịch WebCare
+Khách hàng có thể mua solution kèm source code và guide, hoặc đặt lịch Wecare
 Mentor với giá 200.000đ cho 60 phút. Mỗi solution hoặc tool nằm trong một
 project riêng và không được đưa vào repository này.
 

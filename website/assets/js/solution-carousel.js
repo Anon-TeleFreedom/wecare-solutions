@@ -3,12 +3,12 @@ const carouselTrack = document.querySelector("#solution-track");
 const CAROUSEL_CLONE_ATTRIBUTE = "data-carousel-clone";
 const DRAG_THRESHOLD_PX = 5;
 const SCROLL_END_FALLBACK_MS = 220;
+const AUTOPLAY_INTERVAL_MS = 2400;
+const AUTOPLAY_SCROLL_DURATION_MS = 700;
 
 function initializeSolutionCarousel(track) {
   const carousel = track.closest(".solution-carousel");
   const originalCards = Array.from(track.querySelectorAll(".solution-card"));
-  const previousButton = carousel.querySelector("[data-solution-previous]");
-  const nextButton = carousel.querySelector("[data-solution-next]");
   const positionLabel = carousel.querySelector("[data-solution-current]");
 
   if (originalCards.length === 0) return;
@@ -26,10 +26,16 @@ function initializeSolutionCarousel(track) {
   let dragAnimationFrame;
   let pendingDragScrollLeft;
   let scrollEndTimer;
+  let autoplayTimer;
+  let autoplayFrame;
+  let isAutoplayScrolling = false;
   let dragStartX = 0;
   let dragStartScrollLeft = 0;
   let isDragging = false;
   let suppressClick = false;
+  let isPointerInteracting = false;
+  let hasKeyboardFocus = false;
+  let carouselInViewport = !("IntersectionObserver" in window);
 
   function createClone(card) {
     const clone = card.cloneNode(true);
@@ -63,7 +69,14 @@ function initializeSolutionCarousel(track) {
   function updatePosition(physicalIndex) {
     currentPhysicalIndex = physicalIndex;
     const logicalIndex = getLogicalIndex(physicalIndex);
-    positionLabel.textContent = String(logicalIndex + 1).padStart(2, "0");
+    const nextPosition = String(logicalIndex + 1).padStart(2, "0");
+    const positionChanged = positionLabel.textContent !== nextPosition;
+    positionLabel.textContent = nextPosition;
+
+    if (positionChanged && !prefersReducedMotion.matches) {
+      positionLabel.classList.remove("is-updating");
+      requestAnimationFrame(() => positionLabel.classList.add("is-updating"));
+    }
   }
 
   function findNearestPhysicalIndex() {
@@ -99,6 +112,83 @@ function initializeSolutionCarousel(track) {
     updatePosition(physicalIndex);
   }
 
+  function pauseAutoplay() {
+    clearTimeout(autoplayTimer);
+    autoplayTimer = undefined;
+  }
+
+  function cancelAutoplayScroll() {
+    if (autoplayFrame) cancelAnimationFrame(autoplayFrame);
+    autoplayFrame = undefined;
+    if (!isAutoplayScrolling) return;
+
+    isAutoplayScrolling = false;
+    track.classList.remove("is-autoplaying");
+    updatePosition(findNearestPhysicalIndex());
+  }
+
+  function animateAutoplayScroll() {
+    const nextIndex = currentPhysicalIndex + 1;
+    const start = track.scrollLeft;
+    const target = cardOffsets[nextIndex];
+    const startedAt = performance.now();
+
+    if (target === undefined || Math.abs(target - start) < 1) {
+      scrollToPhysicalIndex(nextIndex, "auto");
+      scheduleAutoplay();
+      return;
+    }
+
+    isAutoplayScrolling = true;
+    track.classList.add("is-autoplaying");
+
+    function step(now) {
+      if (!isAutoplayScrolling) return;
+
+      const progress = Math.min((now - startedAt) / AUTOPLAY_SCROLL_DURATION_MS, 1);
+      const eased = progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+      track.scrollLeft = start + (target - start) * eased;
+
+      if (progress < 1) {
+        autoplayFrame = requestAnimationFrame(step);
+        return;
+      }
+
+      autoplayFrame = undefined;
+      isAutoplayScrolling = false;
+      track.scrollLeft = target;
+      track.classList.remove("is-autoplaying");
+      updatePosition(nextIndex);
+      normalizeLoopPosition();
+      scheduleAutoplay();
+    }
+
+    autoplayFrame = requestAnimationFrame(step);
+  }
+
+  function scheduleAutoplay(delay = AUTOPLAY_INTERVAL_MS) {
+    pauseAutoplay();
+    if (
+      prefersReducedMotion.matches ||
+      document.hidden ||
+      isPointerInteracting ||
+      !carouselInViewport ||
+      hasKeyboardFocus
+    ) {
+      return;
+    }
+
+    autoplayTimer = setTimeout(animateAutoplayScroll, delay);
+  }
+
+  function finishScrolling() {
+    if (isAutoplayScrolling) return;
+    normalizeLoopPosition();
+    scheduleAutoplay();
+  }
+
   function snapToNearestCard() {
     const behavior = prefersReducedMotion.matches ? "auto" : "smooth";
     scrollToPhysicalIndex(findNearestPhysicalIndex(), behavior);
@@ -119,10 +209,13 @@ function initializeSolutionCarousel(track) {
 
   function scheduleScrollEndFallback() {
     clearTimeout(scrollEndTimer);
-    scrollEndTimer = setTimeout(normalizeLoopPosition, SCROLL_END_FALLBACK_MS);
+    scrollEndTimer = setTimeout(finishScrolling, SCROLL_END_FALLBACK_MS);
   }
 
   function startMouseDrag(event) {
+    isPointerInteracting = true;
+    pauseAutoplay();
+    cancelAutoplayScroll();
     if (
       event.pointerType !== "mouse" ||
       event.button !== 0 ||
@@ -162,6 +255,7 @@ function initializeSolutionCarousel(track) {
   }
 
   function stopMouseDrag(event) {
+    isPointerInteracting = false;
     if (!isDragging) return;
 
     if (dragAnimationFrame) {
@@ -189,38 +283,97 @@ function initializeSolutionCarousel(track) {
   function handleKeyboardNavigation(event) {
     if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
     event.preventDefault();
+    pauseAutoplay();
+    cancelAutoplayScroll();
     moveBy(event.key === "ArrowRight" ? 1 : -1);
   }
 
   function maintainPositionAfterResize() {
+    cancelAutoplayScroll();
     refreshCardOffsets();
     scrollToPhysicalIndex(currentPhysicalIndex, "auto");
+  }
+
+  function handleUserScroll() {
+    pauseAutoplay();
+    cancelAutoplayScroll();
   }
 
   addLoopClones();
   refreshCardOffsets();
   scrollToPhysicalIndex(solutionCount, "auto");
 
-  previousButton.addEventListener("click", () => moveBy(-1));
-  nextButton.addEventListener("click", () => moveBy(1));
   track.addEventListener("scroll", updatePositionDuringScroll, { passive: true });
   if (supportsScrollEnd) {
-    track.addEventListener("scrollend", normalizeLoopPosition);
+    track.addEventListener("scrollend", finishScrolling);
   } else {
     track.addEventListener("scroll", scheduleScrollEndFallback, { passive: true });
   }
   track.addEventListener("keydown", handleKeyboardNavigation);
+  track.addEventListener("wheel", handleUserScroll, { passive: true });
+  carousel.addEventListener("focusin", () => {
+    requestAnimationFrame(() => {
+      hasKeyboardFocus = carousel.contains(document.activeElement) &&
+        document.activeElement.matches(":focus-visible");
+      if (hasKeyboardFocus) {
+        pauseAutoplay();
+        cancelAutoplayScroll();
+      }
+    });
+  });
+  carousel.addEventListener("focusout", (event) => {
+    requestAnimationFrame(() => {
+      hasKeyboardFocus = carousel.contains(document.activeElement) &&
+        document.activeElement.matches(":focus-visible");
+      if (!hasKeyboardFocus) scheduleAutoplay();
+    });
+  });
+  track.addEventListener("pointerup", () => {
+    isPointerInteracting = false;
+    scheduleAutoplay(1200);
+  });
+  track.addEventListener("pointercancel", () => {
+    isPointerInteracting = false;
+    scheduleAutoplay();
+  });
   track.addEventListener("pointerdown", startMouseDrag);
   track.addEventListener("pointermove", continueMouseDrag);
   track.addEventListener("pointerup", stopMouseDrag);
   track.addEventListener("pointercancel", stopMouseDrag);
   track.addEventListener("click", preventClickAfterDrag, true);
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      pauseAutoplay();
+      cancelAutoplayScroll();
+    }
+    else scheduleAutoplay();
+  });
+  prefersReducedMotion.addEventListener("change", () => {
+    if (prefersReducedMotion.matches) {
+      pauseAutoplay();
+      cancelAutoplayScroll();
+    }
+    else scheduleAutoplay();
+  });
+
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([entry]) => {
+      carouselInViewport = entry.isIntersecting;
+      if (carouselInViewport) scheduleAutoplay();
+      else {
+        pauseAutoplay();
+        cancelAutoplayScroll();
+      }
+    }, { threshold: 0.15 }).observe(carousel);
+  }
 
   if ("ResizeObserver" in window) {
     new ResizeObserver(maintainPositionAfterResize).observe(track);
   } else {
     window.addEventListener("resize", maintainPositionAfterResize);
   }
+
+  scheduleAutoplay();
 }
 
 if (carouselTrack) initializeSolutionCarousel(carouselTrack);

@@ -1,11 +1,11 @@
-# WebCare DatV: Hệ sinh thái Solution
+# Wecare DatV: Hệ sinh thái Solution
 
 ## 1. Định vị
 
-WebCare DatV là hệ sinh thái solution kỹ thuật và dịch vụ trợ giảng DevOps
+Wecare DatV là hệ sinh thái solution kỹ thuật và dịch vụ trợ giảng DevOps
 được cung cấp theo nhu cầu thực tế của khách hàng.
 
-`webcare-site` là website catalog và kênh nhận yêu cầu tư vấn. Website không phải
+`wecare-datv` là website catalog và kênh nhận yêu cầu tư vấn. Website không phải
 backend dùng chung cho các sản phẩm.
 
 Mỗi solution:
@@ -171,14 +171,14 @@ không cần một repository sản phẩm riêng.
 ## 4. Ranh giới repository
 
 ```text
-webcare-site
+wecare-datv
 webcare-incident
 webcare-app-notify
 webcare-pages
 webcare-gitops
 ```
 
-Không gom source code của các solution vào `webcare-site` hoặc vào một monorepo
+Không gom source code của các solution vào `wecare-datv` hoặc vào một monorepo
 chung chỉ để tiện phát triển ban đầu.
 
 ## 5. Khách hàng mục tiêu
@@ -196,7 +196,7 @@ chung chỉ để tiện phát triển ban đầu.
 Khách hàng mô tả vấn đề
           |
           v
-WebCare phân tích nhu cầu
+Wecare DatV phân tích nhu cầu
           |
           v
 Chọn solution hoặc đặt lịch trợ giảng

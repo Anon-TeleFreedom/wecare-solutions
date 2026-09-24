@@ -1,8 +1,8 @@
-# WebCare DatV UI rules
+# Wecare DatV UI rules
 
 ## 1. Brand and purpose
 
-- Present WebCare DatV as a solution ecosystem, not a single-product website.
+- Present Wecare DatV as a solution ecosystem, not a single-product website.
 - Keep five catalog items visible: WebCare Incident, WebCare App Notify, WebCare
   Pages, WebCare GitOps and WebCare Mentor.
 - Use concise Vietnamese copy. English technical terms are allowed when they are
@@ -24,12 +24,16 @@
 - Render solution cards in one horizontal scroll-snap carousel.
 - Keep the carousel looping continuously in both directions. After the last
   solution, continue directly with the first solution without an empty end state.
-- Keep `Trước` and `Tiếp` active at every position.
+- The solution catalog advances automatically every 2.4 seconds while visible,
+  with a 700 ms eased transition between cards.
+  Pause autoplay on keyboard focus, active pointer interaction, page visibility
+  loss, and `prefers-reduced-motion`. Preserve touch swipe and keyboard arrow
+  navigation.
 - Do not replace the carousel with a 2 by 2 grid unless the user explicitly asks.
 - On desktop, show at least two complete cards and part of the next card.
 - On mobile, show one card and enough of the next card to communicate scrolling.
-- Support touch swipe, trackpad scrolling, mouse drag, keyboard arrows and visible
-  `Trước` and `Tiếp` controls.
+- Support touch swipe, trackpad scrolling, mouse drag and keyboard arrows. Keep
+  the current position and total count visible without previous/next controls.
 - Keep the carousel usable when JavaScript fails. Native horizontal scrolling is
   the baseline behavior.
 - Show the current position and total number of catalog items.
@@ -82,7 +86,8 @@
 - Keep entrance and reveal animations short and run them once.
 - Limit continuous motion to small ambient elements in the hero preview.
 - Do not hide meaningful content when JavaScript is unavailable.
-- Avoid parallax, autoplay carousels and large looping page animations.
+- Avoid parallax and large looping page animations. The solution catalog may
+  autoplay as specified above, with the stated pause behavior.
 - Disable nonessential animation for `prefers-reduced-motion`.
 - Keep motion logic in `motion.js` and motion styles in `motion.css`.
 

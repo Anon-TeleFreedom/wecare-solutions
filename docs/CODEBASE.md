@@ -9,7 +9,7 @@ JavaScript thuần, không có bước build và không cần cài dependency.
 - `website/assets/css/`: style được chia theo phạm vi trách nhiệm.
 - `website/assets/js/main.js`: hành vi chung của trang.
 - `website/assets/js/solution-carousel.js`: chỉ xử lý carousel solution.
-- `website/assets/js/motion.js`: chỉ xử lý entrance và scroll reveal.
+- `website/assets/js/motion.js`: xử lý entrance, scroll reveal và chuyển động nhẹ của trang.
 
 Giữ `index.html` là tài liệu HTML tĩnh để nội dung có sẵn cho SEO, accessibility
 và Netlify Forms. Không chuyển nội dung chính sang render bằng JavaScript.
@@ -49,6 +49,12 @@ Chỉ quản lý chuyển động giao diện:
 - Entrance animation ở hero.
 - Reveal một lần khi nội dung đi vào viewport.
 - Khởi tạo chuyển động nền nhẹ trong preview.
+- Đếm số danh mục `05` từ `00` khi preview đi vào màn hình lần đầu.
+- Chạy hoạt ảnh cột và vệt quét ngang trong biểu đồ preview.
+- Vẽ từng cột biểu đồ từ chân lên khi preview xuất hiện.
+- Tạm dừng chuyển động nền khi preview ngoài màn hình hoặc tab bị ẩn.
+- Cập nhật tiến độ cuộn trang và ánh sáng theo con trỏ trong preview.
+- Hiện ngay nội dung khi nhận keyboard focus hoặc bật giảm chuyển động.
 - Không ẩn nội dung khi JavaScript không chạy.
 
 ### `solution-carousel.js`
@@ -56,8 +62,13 @@ Chỉ quản lý chuyển động giao diện:
 Chỉ quản lý carousel solution:
 
 - Tạo clone phục vụ vòng lặp liên tục.
-- Điều hướng bằng nút, bàn phím, chuột, cảm ứng và trackpad.
+- Tự chuyển solution khi carousel hiển thị, nghỉ 2,4 giây giữa các lượt và trượt
+  êm trong 700 ms bằng `requestAnimationFrame`.
+- Điều hướng bằng bàn phím, chuột, cảm ứng và trackpad.
+- Tạm dừng tự chuyển khi người dùng tương tác, focus bàn phím, tab bị ẩn,
+  carousel ra khỏi màn hình hoặc bật reduced motion.
 - Đồng bộ vị trí hiện tại.
+- Phát hiệu ứng vị trí khi chỉ số giải pháp thực sự thay đổi.
 - Chuẩn hóa vị trí sau khi đi qua clone.
 - Tôn trọng `prefers-reduced-motion`.
 
@@ -82,6 +93,11 @@ card là nội dung chính và phải tồn tại trong HTML khi JavaScript chư
 | Sửa phạm vi sản phẩm | `docs/PRODUCT.md` |
 
 ## Kiểm tra sau khi sửa
+
+Không có bước build hoặc cài dependency. Lệnh preview và kiểm tra cú pháp
+JavaScript được ghi trong `AGENTS.md`. Với thay đổi tương tác, kiểm tra thêm
+thao tác bàn phím, reduced motion, desktop/mobile và hai giao diện sáng/tối trong
+trình duyệt.
 
 Chạy local:
 
