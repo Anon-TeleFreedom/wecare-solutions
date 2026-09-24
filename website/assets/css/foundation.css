@@ -75,7 +75,7 @@ a {
   min-height: 78px;
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: 28px;
 }
 
 .brand {
@@ -139,6 +139,106 @@ a {
 
 .menu-button {
   display: none;
+}
+
+.language-control {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.header-tools {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.language-control[hidden] {
+  display: none;
+}
+
+.language-toggle {
+  width: 48px;
+  height: 42px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.language-toggle:hover,
+.language-toggle[aria-expanded="true"] {
+  background: var(--mint-light);
+  border-color: var(--featured-border);
+}
+
+.language-toggle:focus-visible {
+  outline: 2px solid var(--featured-border);
+  outline-offset: 2px;
+}
+
+.language-options {
+  position: absolute;
+  z-index: 60;
+  top: calc(100% + 8px);
+  left: 50%;
+  min-width: 88px;
+  padding: 5px;
+  display: grid;
+  gap: 2px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  transform: translateX(-50%);
+}
+
+.language-options[hidden] {
+  display: none;
+}
+
+.language-options button {
+  min-height: 34px;
+  padding: 6px 10px;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 0;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.language-options button:hover,
+.language-options button[aria-checked="true"] {
+  color: var(--ink);
+  background: var(--mint-light);
+}
+
+.language-options button:focus-visible {
+  outline: 2px solid var(--featured-border);
+  outline-offset: 1px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+  border: 0;
 }
 
 .theme-toggle {

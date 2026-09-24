@@ -5,8 +5,15 @@
 - Present Wecare DatV as a solution ecosystem, not a single-product website.
 - Keep five catalog items visible: WebCare Incident, WebCare App Notify, WebCare
   Pages, WebCare GitOps and WebCare Mentor.
-- Use concise Vietnamese copy. English technical terms are allowed when they are
-  standard and clearer than a forced translation.
+- Support Vietnamese, English, and Simplified Chinese (`zh-CN`), with Vietnamese
+  as the default language.
+- Keep product names such as WebCare Incident unchanged across languages.
+- Write and proofread copy as a native speaker would phrase it in each language;
+  adapt sentence structure and length instead of translating word for word.
+- Keep standard technical terms in English when local developers commonly use
+  them, and localize generic product and business language.
+- Keep terminology consistent across navigation, cards, forms, validation,
+  metadata and accessible labels.
 - Do not invent customers, partners, testimonials, metrics or product maturity.
 
 ## 2. Visual direction
@@ -59,6 +66,8 @@
 - Preserve semantic headings, articles, lists, buttons and links.
 - Every interactive control must be reachable and usable with a keyboard.
 - Keep visible focus states and meaningful accessible labels.
+- Custom menus must expose their expanded and selected states, close on Escape
+  or outside interaction, and keep focus behavior predictable.
 - Respect `prefers-reduced-motion` for smooth scrolling and transitions.
 - Maintain sufficient contrast in both themes.
 - Do not hide scrollable content from screen readers.
@@ -101,3 +110,5 @@ Before completing a UI change:
 4. Check keyboard navigation and focus states.
 5. Check that JavaScript parses and no browser console error appears.
 6. Confirm no secret, personal contact detail or raster marketing asset was added.
+7. Check all three languages, including form validation, metadata, accessible
+   labels, mobile header fit, and saved language after reload.

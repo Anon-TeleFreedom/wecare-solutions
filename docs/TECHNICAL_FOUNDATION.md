@@ -33,6 +33,7 @@ Phiên bản đầu sử dụng:
 | Cấu trúc | HTML5 semantic |
 | Giao diện | CSS thuần |
 | Tương tác | JavaScript thuần |
+| Ngôn ngữ | Tiếng Việt, tiếng Anh, tiếng Trung giản thể |
 | Font | System font, không tải từ bên thứ ba |
 | Build step | Không có |
 | Local preview | Python HTTP server |
@@ -92,6 +93,7 @@ website/
       main.js
       motion.js
       solution-carousel.js
+      translations.js
 ```
 
 Chỉ thêm asset hoặc thư mục khi có nội dung thực tế.

@@ -5,16 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta
       name="description"
-      content="Wecare DatV là hệ sinh thái các solution kỹ thuật được tư vấn và phát triển theo nhu cầu thực tế."
+      content="Wecare DatV là hệ sinh thái giải pháp công nghệ, được tư vấn và phát triển theo nhu cầu thực tế."
+      data-i18n-content="meta.description"
     >
-    <title>Wecare DatV | Hệ sinh thái Solution</title>
+    <title data-i18n="meta.title">Wecare DatV | Hệ sinh thái giải pháp</title>
     <link rel="canonical" href="https://wecare-datv.netlify.app/">
     <meta property="og:url" content="https://wecare-datv.netlify.app/">
     <meta property="og:site_name" content="Wecare DatV">
-    <meta property="og:title" content="Wecare DatV | Hệ sinh thái Solution">
+    <meta
+      property="og:title"
+      content="Wecare DatV | Hệ sinh thái giải pháp"
+      data-i18n-content="meta.title"
+    >
     <meta
       property="og:description"
-      content="Wecare DatV là hệ sinh thái các solution kỹ thuật được tư vấn và phát triển theo nhu cầu thực tế."
+      content="Wecare DatV là hệ sinh thái giải pháp công nghệ, được tư vấn và phát triển theo nhu cầu thực tế."
+      data-i18n-content="meta.description"
     >
     <meta property="og:type" content="website">
     <meta name="color-scheme" content="light dark">
@@ -40,15 +46,16 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
     <script type="module" src="assets/js/solution-carousel.js"></script>
     <script type="module" src="assets/js/motion.js"></script>
+    <script src="assets/js/translations.js" defer></script>
     <script src="assets/js/main.js" defer></script>
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Đi đến nội dung chính</a>
+    <a class="skip-link" href="#main-content" data-i18n="a11y.skip">Đi đến nội dung chính</a>
 
     <!-- Site header -->
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="/" aria-label="Wecare DatV, về trang chủ">
+        <a class="brand" href="/" aria-label="Wecare DatV, về trang chủ" data-i18n-aria-label="a11y.home">
           <span class="brand-mark" aria-hidden="true">W</span>
           <span class="brand-copy">
             <strong>Wecare</strong>
@@ -62,39 +69,60 @@
           aria-expanded="false"
           aria-controls="site-navigation"
         >
-          Menu
+          <span data-i18n="nav.menu">Menu</span>
         </button>
 
-        <nav id="site-navigation" class="site-navigation" aria-label="Điều hướng chính">
-          <a href="#solutions">Giải pháp</a>
-          <a href="#process">Quy trình</a>
-          <a href="#integrations">Tích hợp</a>
-          <a href="#contact">Liên hệ</a>
+        <nav id="site-navigation" class="site-navigation" aria-label="Điều hướng chính" data-i18n-aria-label="a11y.navigation">
+          <a href="#solutions" data-i18n="nav.solutions">Giải pháp</a>
+          <a href="#process" data-i18n="nav.process">Quy trình</a>
+          <a href="#integrations" data-i18n="nav.integrations">Tích hợp</a>
+          <a href="#contact" data-i18n="nav.contact">Liên hệ</a>
         </nav>
 
-        <a class="button button-small header-cta" href="#contact">Nhận tư vấn</a>
-        <button
-          class="theme-toggle"
-          type="button"
-          aria-label="Chuyển sang giao diện tối"
-          title="Chuyển sang giao diện tối"
-        >
-          <svg
-            class="theme-icon theme-icon-moon"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
+        <a class="button button-small header-cta" href="#contact" data-i18n="common.consult">Nhận tư vấn</a>
+        <div class="header-tools">
+          <div class="language-control" hidden>
+            <button
+              id="language-switcher"
+              class="language-toggle"
+              type="button"
+              aria-label="Chọn ngôn ngữ"
+              data-i18n-aria-label="a11y.language"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              aria-controls="language-options"
+            >VI</button>
+            <div id="language-options" class="language-options" role="menu" aria-label="Chọn ngôn ngữ" data-i18n-aria-label="a11y.language" hidden>
+              <button type="button" role="menuitemradio" data-language="vi" aria-checked="true">VI</button>
+              <button type="button" role="menuitemradio" data-language="en" aria-checked="false">EN</button>
+              <button type="button" role="menuitemradio" data-language="zh" aria-checked="false">中文</button>
+            </div>
+          </div>
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label="Chuyển sang giao diện tối"
+            title="Chuyển sang giao diện tối"
+            data-i18n-aria-label="theme.dark"
+            data-i18n-title="theme.dark"
           >
-            <path d="M20 15.2A8.4 8.4 0 0 1 8.8 4a8.5 8.5 0 1 0 11.2 11.2Z"></path>
-          </svg>
-          <svg
-            class="theme-icon theme-icon-sun"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <circle cx="12" cy="12" r="3.5"></circle>
-            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
-          </svg>
-        </button>
+            <svg
+              class="theme-icon theme-icon-moon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path d="M20 15.2A8.4 8.4 0 0 1 8.8 4a8.5 8.5 0 1 0 11.2 11.2Z"></path>
+            </svg>
+            <svg
+              class="theme-icon theme-icon-sun"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="3.5"></circle>
+              <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+            </svg>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -103,42 +131,42 @@
       <section id="top" class="hero">
         <div class="container hero-grid">
           <div class="hero-content">
-            <p class="eyebrow">Hệ sinh thái Solution</p>
-            <h1>Giải pháp phù hợp cho từng bài toán thực tế.</h1>
-            <p class="hero-description">
-              Tư vấn, phát triển và kết nối các solution theo nhu cầu của bạn.
+        <p class="eyebrow" data-i18n="hero.eyebrow">Hệ sinh thái giải pháp</p>
+            <h1 data-i18n="hero.title">Giải pháp phù hợp cho từng bài toán thực tế.</h1>
+            <p class="hero-description" data-i18n="hero.description">
+              Tư vấn, phát triển và kết nối các giải pháp theo nhu cầu của bạn.
             </p>
             <div class="hero-actions">
-              <a class="button" href="#contact">Nhận tư vấn hoặc đặt lịch</a>
-              <a class="text-link" href="#solutions">Xem các giải pháp</a>
+              <a class="button" href="#contact" data-i18n="hero.consult">Nhận tư vấn hoặc đặt lịch</a>
+              <a class="text-link" href="#solutions" data-i18n="hero.solutions">Xem các giải pháp</a>
             </div>
-            <dl class="hero-facts" aria-label="Phạm vi bàn giao">
+            <dl class="hero-facts" aria-label="Phạm vi bàn giao" data-i18n-aria-label="hero.factsLabel">
               <div>
                 <dt>05</dt>
-                <dd>Sản phẩm và dịch vụ</dd>
+                <dd data-i18n="hero.factProducts">Sản phẩm và dịch vụ</dd>
               </div>
               <div>
-                <dt>Source</dt>
-                <dd>Code bàn giao</dd>
+                <dt>Mã nguồn</dt>
+                <dd data-i18n="hero.factSource">Bàn giao mã nguồn</dd>
               </div>
               <div>
                 <dt>1:1</dt>
-                <dd>Trợ giảng DevOps</dd>
+                <dd data-i18n="hero.factMentor">Hướng dẫn DevOps 1:1</dd>
               </div>
             </dl>
           </div>
 
-          <div class="monitor-preview" aria-label="Minh họa danh mục solution Wecare DatV">
+          <div class="monitor-preview" aria-label="Minh họa danh mục giải pháp Wecare DatV" data-i18n-aria-label="preview.label">
             <div class="preview-header">
               <div>
-                <span class="preview-label">Danh mục Wecare</span>
-                <strong>Sản phẩm và dịch vụ</strong>
+                <span class="preview-label" data-i18n="preview.eyebrow">Danh mục Wecare</span>
+                <strong data-i18n="preview.title">Sản phẩm và dịch vụ</strong>
               </div>
-              <span class="status-badge">Rõ phạm vi</span>
+              <span class="status-badge" data-i18n="preview.status">Rõ phạm vi</span>
             </div>
 
             <div class="uptime-panel">
-              <span>Danh mục hiện tại</span>
+              <span data-i18n="preview.catalog">Danh mục hiện tại</span>
               <strong>05</strong>
               <div class="uptime-bars" aria-hidden="true">
                 <span></span><span></span><span></span><span></span>
@@ -154,47 +182,47 @@
                 <span class="check-signal" aria-hidden="true"></span>
                 <div>
                   <strong>WebCare Incident</strong>
-                  <span>Quản lý và điều phối sự cố</span>
+                  <span data-i18n="preview.incident">Quản lý và điều phối sự cố</span>
                 </div>
-                <time>Ưu tiên</time>
+                <time data-i18n="preview.priority">Ưu tiên</time>
               </div>
               <div class="check-row">
                 <span class="check-signal" aria-hidden="true"></span>
                 <div>
                   <strong>WebCare App Notify</strong>
-                  <span>Nhận thông báo và phối hợp xử lý</span>
+                  <span data-i18n="preview.notify">Nhận thông báo và phối hợp xử lý</span>
                 </div>
-                <time>Tiếp theo</time>
+                <time data-i18n="preview.next">Tiếp theo</time>
               </div>
               <div class="check-row">
                 <span class="check-signal" aria-hidden="true"></span>
                 <div>
                   <strong>WebCare Pages và GitOps</strong>
-                  <span>Tự động hóa nội dung và triển khai</span>
+                  <span data-i18n="preview.pages">Tự động hóa nội dung và triển khai</span>
                 </div>
-                <time>Lộ trình</time>
+                <time data-i18n="preview.roadmap">Lộ trình</time>
               </div>
               <div class="check-row">
                 <span class="check-signal" aria-hidden="true"></span>
                 <div>
                   <strong>WebCare Mentor</strong>
-                  <span>Trợ giảng DevOps theo giờ</span>
+                  <span data-i18n="preview.mentor">Hướng dẫn DevOps theo giờ</span>
                 </div>
-                <time>Đặt lịch</time>
+                <time data-i18n="preview.book">Đặt lịch</time>
               </div>
             </div>
 
-            <p class="preview-note">Danh mục sản phẩm và dịch vụ đang phát triển.</p>
+            <p class="preview-note" data-i18n="preview.note">Danh mục sản phẩm và dịch vụ đang phát triển.</p>
           </div>
         </div>
       </section>
 
       <!-- Common problems -->
-      <section class="problem-strip" aria-label="Các vấn đề phổ biến">
+      <section class="problem-strip" aria-label="Các vấn đề phổ biến" data-i18n-aria-label="problems.label">
         <div class="container problem-grid">
-          <p>Chưa biết công cụ nào phù hợp với nhu cầu?</p>
-          <p>Tích hợp nhiều nền tảng đang mất quá nhiều thời gian?</p>
-          <p>Cần source code, guide hoặc một buổi trợ giảng rõ ràng?</p>
+          <p data-i18n="problems.one">Chưa biết công cụ nào phù hợp với nhu cầu?</p>
+          <p data-i18n="problems.two">Tích hợp nhiều nền tảng đang mất quá nhiều thời gian?</p>
+          <p data-i18n="problems.three">Bạn cần mã nguồn, tài liệu hướng dẫn hay một buổi kèm cặp chuyên sâu?</p>
         </div>
       </section>
 
@@ -203,11 +231,11 @@
         <div class="container">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Lộ trình sản phẩm</p>
-              <h2>Sản phẩm và dịch vụ cho từng bài toán.</h2>
+              <p class="eyebrow" data-i18n="solutions.eyebrow">Lộ trình sản phẩm</p>
+              <h2 data-i18n="solutions.title">Sản phẩm và dịch vụ cho từng bài toán.</h2>
             </div>
-            <p>
-              Mỗi solution có lộ trình riêng. Dịch vụ mentor được đặt lịch theo giờ.
+            <p data-i18n="solutions.description">
+              Mỗi sản phẩm có lộ trình phát triển riêng. Dịch vụ hướng dẫn được đặt lịch theo giờ.
             </p>
           </div>
 
@@ -217,97 +245,98 @@
               id="solution-track"
               tabindex="0"
               aria-label="Danh sách sản phẩm và dịch vụ, kéo ngang để xem thêm"
+              data-i18n-aria-label="solutions.carousel"
             >
             <article class="solution-card">
               <span class="card-index">01</span>
-              <p class="card-kicker">Ưu tiên phát triển</p>
+              <p class="card-kicker" data-i18n="card.incident.kicker">Ưu tiên phát triển</p>
               <h3>WebCare Incident</h3>
-              <p>
-                Tiếp nhận, chuẩn hóa và điều phối incident từ hệ thống hiện có.
+              <p data-i18n="card.incident.description">
+                Tiếp nhận, chuẩn hóa và phân luồng sự cố từ các hệ thống hiện có.
               </p>
               <ul>
-                <li>Nhận alert qua webhook và API</li>
-                <li>Chuẩn hóa, chống trùng và định tuyến</li>
-                <li>Xác nhận, escalation và chuyển tiếp</li>
+              <li data-i18n="card.incident.feature1">Nhận cảnh báo qua webhook và API</li>
+                <li data-i18n="card.incident.feature2">Chuẩn hóa, chống trùng và định tuyến</li>
+              <li data-i18n="card.incident.feature3">Xác nhận, chuyển cấp xử lý và bàn giao sự cố</li>
               </ul>
               <a class="text-link" href="#contact" data-interest="WebCare Incident">
-                Nhận tư vấn
+                <span data-i18n="common.consult">Nhận tư vấn</span>
               </a>
             </article>
 
             <article class="solution-card featured-card accent-card">
               <span class="card-index">02</span>
-              <p class="card-kicker">Ứng dụng vận hành</p>
+              <p class="card-kicker" data-i18n="card.notify.kicker">Ứng dụng vận hành</p>
               <h3>WebCare App Notify</h3>
-              <p>
-                Ứng dụng nhận thông báo và phối hợp xử lý theo từng incident.
+              <p data-i18n="card.notify.description">
+                Ứng dụng nhận thông báo và phối hợp xử lý từng sự cố.
               </p>
               <ul>
-                <li>Kênh trao đổi theo đội hoặc sự cố</li>
-                <li>Nhận cảnh báo từ WebCare Incident</li>
-                <li>Giao việc, bình luận và theo dõi xử lý</li>
+                <li data-i18n="card.notify.feature1">Kênh trao đổi theo đội hoặc sự cố</li>
+                <li data-i18n="card.notify.feature2">Nhận cảnh báo từ WebCare Incident</li>
+                <li data-i18n="card.notify.feature3">Giao việc, bình luận và theo dõi xử lý</li>
               </ul>
               <a class="text-link" href="#contact" data-interest="WebCare App Notify">
-                Nhận tư vấn
+                <span data-i18n="common.consult">Nhận tư vấn</span>
               </a>
             </article>
 
             <article class="solution-card">
               <span class="card-index">03</span>
-              <p class="card-kicker">Tự động hóa nội dung</p>
+              <p class="card-kicker" data-i18n="card.pages.kicker">Tự động hóa nội dung</p>
               <h3>WebCare Pages</h3>
-              <p>
+              <p data-i18n="card.pages.description">
                 Quản lý nội dung và tự động đăng bài lên nhiều nền tảng mạng xã hội.
               </p>
               <ul>
-                <li>Lịch nội dung đa nền tảng</li>
-                <li>Quy trình duyệt và tự động đăng bài</li>
-                <li>Quản lý kênh, trạng thái và lịch sử</li>
+                <li data-i18n="card.pages.feature1">Lịch nội dung đa nền tảng</li>
+                <li data-i18n="card.pages.feature2">Quy trình duyệt và tự động đăng bài</li>
+                <li data-i18n="card.pages.feature3">Quản lý kênh, trạng thái và lịch sử</li>
               </ul>
               <a class="text-link" href="#contact" data-interest="WebCare Pages">
-                Nhận tư vấn
+                <span data-i18n="common.consult">Nhận tư vấn</span>
               </a>
             </article>
 
             <article class="solution-card featured-card accent-card">
               <span class="card-index">04</span>
-              <p class="card-kicker">Tự động hóa triển khai</p>
+              <p class="card-kicker" data-i18n="card.gitops.kicker">Tự động hóa triển khai</p>
               <h3>WebCare GitOps</h3>
-              <p>
-                Đóng gói quy trình lưu trữ, kiểm tra và triển khai theo mô hình GitOps.
+              <p data-i18n="card.gitops.description">
+                Chuẩn hóa quy trình lưu trữ, kiểm tra và triển khai bằng GitOps.
               </p>
               <ul>
-                <li>Git, registry và cấu trúc lưu trữ</li>
-                <li>Security scan và chính sách triển khai</li>
-                <li>Template tích hợp kèm guide vận hành</li>
+                <li data-i18n="card.gitops.feature1">Git, registry và cách tổ chức mã nguồn</li>
+                <li data-i18n="card.gitops.feature2">Quét bảo mật và chính sách triển khai</li>
+                <li data-i18n="card.gitops.feature3">Mẫu cấu hình tích hợp kèm hướng dẫn vận hành</li>
               </ul>
               <a class="text-link" href="#contact" data-interest="WebCare GitOps">
-                Nhận tư vấn
+                <span data-i18n="common.consult">Nhận tư vấn</span>
               </a>
             </article>
 
             <article class="solution-card mentor-card">
               <span class="card-index">05</span>
-              <p class="card-kicker">Trợ giảng theo giờ</p>
+              <p class="card-kicker" data-i18n="card.mentor.kicker">Hướng dẫn theo giờ</p>
               <h3>WebCare Mentor</h3>
-              <p>
-                Trợ giảng 1:1 cho người học cần gỡ vướng DevOps.
+              <p data-i18n="card.mentor.description">
+                Kèm cặp DevOps 1:1 cho người học cần tháo gỡ vướng mắc.
               </p>
               <p class="card-price">
-                <strong>200.000đ</strong>
-                <span>60 phút, khoảng hai cốc cà phê</span>
+                <strong data-i18n="card.mentor.price">200.000đ</strong>
+                <span data-i18n="card.mentor.priceNote">Một buổi hướng dẫn 60 phút</span>
               </p>
               <ul>
-                <li>Tư vấn lộ trình và tài liệu học</li>
-                <li>Giải đáp bài toán DevOps thực tế</li>
-                <li>Meeting online theo nội dung đã thống nhất</li>
+                <li data-i18n="card.mentor.feature1">Tư vấn lộ trình và tài liệu học</li>
+                <li data-i18n="card.mentor.feature2">Giải đáp bài toán DevOps thực tế</li>
+              <li data-i18n="card.mentor.feature3">Hướng dẫn trực tuyến theo nội dung đã thống nhất</li>
               </ul>
               <a
                 class="text-link"
                 href="#contact"
                 data-interest="WebCare Mentor"
               >
-                Đặt lịch trợ giảng
+                <span data-i18n="card.mentor.action">Đặt lịch hướng dẫn</span>
               </a>
             </article>
             </div>
@@ -325,41 +354,41 @@
       <section id="process" class="section process-section">
         <div class="container process-grid">
           <div class="process-intro">
-            <p class="eyebrow">Cách chúng tôi làm việc</p>
-            <h2>Từ nhu cầu đến kết quả.</h2>
-            <p>
+            <p class="eyebrow" data-i18n="process.eyebrow">Cách chúng tôi làm việc</p>
+            <h2 data-i18n="process.title">Từ nhu cầu đến kết quả.</h2>
+            <p data-i18n="process.description">
               Phạm vi, báo giá và hỗ trợ được thống nhất trước khi thanh toán.
             </p>
-            <a class="button button-secondary" href="#contact">Trao đổi nhu cầu</a>
+            <a class="button button-secondary" href="#contact" data-i18n="process.action">Trao đổi nhu cầu</a>
           </div>
 
           <ol class="process-list">
             <li>
               <span>01</span>
               <div>
-                <h3>Tìm hiểu nhu cầu</h3>
-                <p>Mô tả vấn đề và kết quả bạn cần.</p>
+                <h3 data-i18n="process.step1.title">Tìm hiểu nhu cầu</h3>
+                <p data-i18n="process.step1.description">Mô tả vấn đề và kết quả bạn cần.</p>
               </div>
             </li>
             <li>
               <span>02</span>
               <div>
-                <h3>Chọn hình thức phù hợp</h3>
-                <p>Chọn solution hoặc buổi trợ giảng.</p>
+                <h3 data-i18n="process.step2.title">Chọn hình thức phù hợp</h3>
+                <p data-i18n="process.step2.description">Chọn giải pháp hoặc đặt lịch hướng dẫn.</p>
               </div>
             </li>
             <li>
               <span>03</span>
               <div>
-                <h3>Xác nhận và thanh toán</h3>
-                <p>Chốt phạm vi, lịch hẹn hoặc báo giá.</p>
+                <h3 data-i18n="process.step3.title">Xác nhận và thanh toán</h3>
+                <p data-i18n="process.step3.description">Chốt phạm vi, lịch hẹn hoặc báo giá.</p>
               </div>
             </li>
             <li>
               <span>04</span>
               <div>
-                <h3>Thực hiện và bàn giao</h3>
-                <p>Nhận source code, guide hoặc tham gia buổi trợ giảng.</p>
+                <h3 data-i18n="process.step4.title">Thực hiện và bàn giao</h3>
+                <p data-i18n="process.step4.description">Nhận mã nguồn, tài liệu hướng dẫn hoặc tham gia buổi kèm cặp.</p>
               </div>
             </li>
           </ol>
@@ -371,15 +400,15 @@
         <div class="container">
           <div class="section-heading compact-heading">
             <div>
-              <p class="eyebrow">Hệ sinh thái tích hợp</p>
-              <h2>Tích hợp với hệ thống bạn đang sử dụng.</h2>
+              <p class="eyebrow" data-i18n="integrations.eyebrow">Hệ sinh thái tích hợp</p>
+              <h2 data-i18n="integrations.title">Tích hợp với hệ thống bạn đang sử dụng.</h2>
             </div>
-            <p>
-              Phạm vi tích hợp được xác nhận riêng cho từng solution.
+            <p data-i18n="integrations.description">
+              Phạm vi tích hợp được xác nhận riêng cho từng giải pháp.
             </p>
           </div>
 
-          <div class="integration-list" aria-label="Các công cụ có thể tích hợp">
+          <div class="integration-list" aria-label="Các công cụ có thể tích hợp" data-i18n-aria-label="integrations.tools">
             <span>Prometheus</span>
             <span>GitHub và GitLab</span>
             <span>Container Registry</span>
@@ -387,7 +416,7 @@
             <span>Social API</span>
             <span>Webhook</span>
           </div>
-          <p class="integration-note">
+          <p class="integration-note" data-i18n="integrations.note">
             Không ép khách hàng thay thế toàn bộ công cụ hoặc hạ tầng đang vận hành.
           </p>
         </div>
@@ -397,25 +426,25 @@
       <section class="section fit-section">
         <div class="container fit-grid">
           <div>
-            <p class="eyebrow">Phù hợp với ai</p>
-            <h2>Dành cho người và đội ngũ cần hướng đi phù hợp hơn.</h2>
+            <p class="eyebrow" data-i18n="audience.eyebrow">Phù hợp với ai</p>
+            <h2 data-i18n="audience.title">Dành cho người và đội ngũ cần hướng đi phù hợp hơn.</h2>
           </div>
           <div class="fit-list">
             <article>
-              <h3>Đội kỹ thuật</h3>
-              <p>Cần tự động hóa vận hành và triển khai.</p>
+              <h3 data-i18n="audience.technical">Đội kỹ thuật</h3>
+              <p data-i18n="audience.technicalDescription">Cần tự động hóa vận hành và triển khai.</p>
             </article>
             <article>
-              <h3>Doanh nghiệp</h3>
-              <p>Cần công cụ phù hợp với quy trình nội bộ.</p>
+              <h3 data-i18n="audience.business">Doanh nghiệp</h3>
+              <p data-i18n="audience.businessDescription">Cần công cụ phù hợp với quy trình nội bộ.</p>
             </article>
             <article>
-              <h3>Đội nội dung</h3>
-              <p>Cần quản lý và tự động hóa nhiều kênh.</p>
+              <h3 data-i18n="audience.content">Đội nội dung</h3>
+              <p data-i18n="audience.contentDescription">Cần quản lý và tự động hóa nhiều kênh.</p>
             </article>
             <article>
-              <h3>Người học DevOps</h3>
-              <p>Cần lộ trình, tài liệu hoặc một buổi gỡ vướng trực tiếp.</p>
+              <h3 data-i18n="audience.learners">Người học DevOps</h3>
+              <p data-i18n="audience.learnersDescription">Cần lộ trình, tài liệu hoặc một buổi gỡ vướng trực tiếp.</p>
             </article>
           </div>
         </div>
@@ -425,10 +454,10 @@
       <section id="contact" class="contact-section">
         <div class="container contact-grid">
           <div class="contact-copy">
-            <p class="eyebrow">Tư vấn solution</p>
-            <h2>Bạn đang muốn giải quyết vấn đề gì?</h2>
-            <p>
-              Mô tả nhu cầu để nhận tư vấn solution hoặc đặt lịch trợ giảng.
+            <p class="eyebrow" data-i18n="contact.eyebrow">Tư vấn giải pháp</p>
+            <h2 data-i18n="contact.title">Bạn đang muốn giải quyết vấn đề gì?</h2>
+            <p data-i18n="contact.description">
+              Mô tả nhu cầu để được tư vấn giải pháp hoặc đặt lịch hướng dẫn.
             </p>
             <div class="advisor">
               <img
@@ -441,26 +470,27 @@
                 width="64"
                 height="64"
                 alt="Tư vấn Wecare DatV"
+                data-i18n-alt="contact.advisorAlt"
                 loading="lazy"
                 decoding="async"
               >
               <div>
-                <strong>Tư vấn trực tiếp</strong>
-                <span>Trao đổi nhu cầu trước khi báo giá.</span>
+                <strong data-i18n="contact.advisorTitle">Tư vấn trực tiếp</strong>
+                <span data-i18n="contact.advisorDescription">Trao đổi nhu cầu trước khi báo giá.</span>
               </div>
             </div>
             <div class="contact-details">
               <p>
-                <span>Phản hồi</span>
-                Trong giờ làm việc
+                <span data-i18n="contact.responseLabel">Phản hồi</span>
+                <span data-i18n="contact.response">Trong giờ làm việc</span>
               </p>
               <p>
-                <span>Hình thức</span>
-                Chuyển khoản ngân hàng
+                <span data-i18n="contact.paymentLabel">Hình thức</span>
+                <span data-i18n="contact.payment">Chuyển khoản ngân hàng</span>
               </p>
               <p>
-                <span>Phạm vi</span>
-                Solution hoặc trợ giảng
+                <span data-i18n="contact.scopeLabel">Phạm vi</span>
+                <span data-i18n="contact.scope">Giải pháp hoặc hướng dẫn 1:1</span>
               </p>
             </div>
           </div>
@@ -478,18 +508,18 @@
             <input type="hidden" name="form-name" value="consultation">
             <p class="form-trap" aria-hidden="true">
               <label>
-                Không điền trường này
+                <span data-i18n="form.honeypot">Không điền trường này</span>
                 <input name="bot-field" type="text" tabindex="-1" autocomplete="off">
               </label>
             </p>
             <div class="form-row">
-              <label for="name">Tên của bạn</label>
+              <label for="name" data-i18n="form.name">Tên của bạn</label>
               <input id="name" name="name" type="text" autocomplete="name" required>
               <span class="field-error" data-error-for="name"></span>
             </div>
 
             <div class="form-row">
-              <label for="contact-method">Email hoặc số điện thoại</label>
+              <label for="contact-method" data-i18n="form.contact">Email hoặc số điện thoại</label>
               <input
                 id="contact-method"
                 name="contact"
@@ -497,6 +527,7 @@
                 autocomplete="email"
                 maxlength="254"
                 placeholder="name@example.com hoặc 0912345678"
+                data-i18n-placeholder="form.contactPlaceholder"
                 aria-describedby="contact-error"
                 required
               >
@@ -504,9 +535,9 @@
             </div>
 
             <div class="form-row">
-              <label for="interest">Bạn đang quan tâm</label>
+              <label for="interest" data-i18n="form.interest">Bạn đang quan tâm</label>
               <select id="interest" name="interest" required>
-                <option value="">Chọn sản phẩm hoặc dịch vụ</option>
+                <option value="" data-i18n="form.interestPlaceholder">Chọn sản phẩm hoặc dịch vụ</option>
                 <option>WebCare Incident</option>
                 <option>WebCare App Notify</option>
                 <option>WebCare Pages</option>
@@ -517,7 +548,7 @@
             </div>
 
             <div class="form-row">
-              <label for="message">Mô tả ngắn vấn đề</label>
+              <label for="message" data-i18n="form.message">Mô tả ngắn vấn đề</label>
               <textarea id="message" name="message" rows="3"></textarea>
             </div>
 
@@ -526,6 +557,7 @@
                 class="captcha-field"
                 role="group"
                 aria-label="Xác minh chống spam"
+                data-i18n-aria-label="form.captcha"
                 aria-describedby="captcha-error"
                 data-netlify-recaptcha="true"
                 aria-invalid="false"
@@ -533,8 +565,8 @@
               <span id="captcha-error" class="field-error" data-error-for="captcha"></span>
             </div>
 
-            <button class="button submit-button" type="submit">Gửi yêu cầu tư vấn</button>
-            <p class="form-note">
+            <button class="button submit-button" type="submit" data-i18n="form.submit">Gửi yêu cầu tư vấn</button>
+            <p class="form-note" data-i18n="form.privacy">
               Thông tin chỉ được dùng để phản hồi yêu cầu tư vấn.
             </p>
             <p
@@ -560,15 +592,15 @@
               <span>DatV</span>
             </span>
           </a>
-          <p>Hệ sinh thái Solution theo nhu cầu thực tế.</p>
+          <p data-i18n="footer.description">Hệ sinh thái giải pháp theo nhu cầu thực tế.</p>
         </div>
         <div class="footer-links">
-          <a href="#solutions">Giải pháp</a>
-          <a href="#process">Quy trình</a>
-          <a href="#integrations">Tích hợp</a>
-          <a href="#contact">Liên hệ</a>
+          <a href="#solutions" data-i18n="nav.solutions">Giải pháp</a>
+          <a href="#process" data-i18n="nav.process">Quy trình</a>
+          <a href="#integrations" data-i18n="nav.integrations">Tích hợp</a>
+          <a href="#contact" data-i18n="nav.contact">Liên hệ</a>
         </div>
-        <p class="copyright">Wecare DatV. Bản giao diện MVP.</p>
+        <p class="copyright" data-i18n="footer.copyright">Wecare DatV. Phiên bản MVP.</p>
       </div>
     </footer>
 
@@ -576,8 +608,10 @@
       class="scroll-top"
       type="button"
       aria-label="Cuộn lên đầu trang"
+      data-i18n-aria-label="a11y.scrollTop"
       aria-hidden="true"
       title="Lên đầu trang"
+      data-i18n-title="a11y.scrollTop"
       tabindex="-1"
     >
       <svg viewBox="0 0 24 24" aria-hidden="true">

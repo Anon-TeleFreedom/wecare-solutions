@@ -9,12 +9,13 @@ const themeToggle = document.querySelector(".theme-toggle");
 const themeColor = document.querySelector('meta[name="theme-color"]');
 const scrollTopButton = document.querySelector(".scroll-top");
 const topSection = document.querySelector("#top");
+const translate = window.siteI18n.getTranslation;
 
 function setTheme(theme) {
   const isDark = theme === "dark";
   const toggleLabel = isDark
-    ? "Chuyển sang giao diện sáng"
-    : "Chuyển sang giao diện tối";
+    ? translate("theme.light")
+    : translate("theme.dark");
   document.documentElement.dataset.theme = theme;
   themeToggle.setAttribute("aria-label", toggleLabel);
   themeToggle.setAttribute("title", toggleLabel);
@@ -22,6 +23,10 @@ function setTheme(theme) {
 }
 
 setTheme(document.documentElement.dataset.theme || "light");
+
+document.addEventListener("site-language-change", () => {
+  setTheme(document.documentElement.dataset.theme || "light");
+});
 
 themeToggle.addEventListener("click", () => {
   const nextTheme =
@@ -102,7 +107,7 @@ function validateContactField(field) {
   const isValid = isValidEmail(value) || isValidPhone(value);
   const message = isValid
     ? ""
-    : "Nhập email hợp lệ hoặc số điện thoại từ 9 đến 15 chữ số.";
+    : translate("form.validation.contact");
   showFieldError(field, message);
   return isValid;
 }
@@ -118,7 +123,7 @@ function validateCaptcha(form) {
   captchaContainer.setAttribute("aria-invalid", String(!isValid));
   errorElement.textContent = isValid
     ? ""
-    : "Vui lòng xác nhận bạn không phải là robot.";
+    : translate("form.validation.captcha");
   return isValid;
 }
 
@@ -140,23 +145,22 @@ consultationForm.addEventListener("submit", async (event) => {
   const nameField = consultationForm.elements.name;
   const statusElement = document.querySelector("#form-status");
   const submitButton = consultationForm.querySelector('[type="submit"]');
-  const submitLabel = submitButton.textContent;
 
   const isNameValid = validateRequiredField(
     nameField,
-    "Vui lòng nhập tên của bạn.",
+    translate("form.validation.name"),
   );
   const isContactValid = validateContactField(contactField);
   const isInterestValid = validateRequiredField(
     interestField,
-    "Vui lòng chọn sản phẩm hoặc dịch vụ bạn quan tâm.",
+    translate("form.validation.interest"),
   );
   const isCaptchaValid = validateCaptcha(consultationForm);
 
   if (!isNameValid || !isContactValid || !isInterestValid || !isCaptchaValid) {
     setFormStatus(
       statusElement,
-      "Không thể gửi. Vui lòng kiểm tra các trường được đánh dấu.",
+      translate("form.validation.invalid"),
       "error",
     );
     const firstInvalidField = consultationForm.querySelector(
@@ -175,8 +179,8 @@ consultationForm.addEventListener("submit", async (event) => {
 
   submitButton.disabled = true;
   consultationForm.setAttribute("aria-busy", "true");
-  submitButton.textContent = "Đang gửi...";
-  setFormStatus(statusElement, "Đang gửi yêu cầu của bạn...", "loading");
+  submitButton.textContent = translate("form.sending.button");
+  setFormStatus(statusElement, translate("form.sending.status"), "loading");
 
   try {
     const response = await fetch("/", {
@@ -193,18 +197,18 @@ consultationForm.addEventListener("submit", async (event) => {
     window.grecaptcha?.reset();
     setFormStatus(
       statusElement,
-      "Yêu cầu đã được gửi thành công. Chúng tôi sẽ liên hệ lại sớm.",
+      translate("form.success"),
       "success",
     );
   } catch (error) {
     console.error("Consultation form submission failed.", error);
     setFormStatus(
       statusElement,
-      "Không thể gửi yêu cầu lúc này. Vui lòng kiểm tra CAPTCHA và thử lại.",
+      translate("form.error"),
       "error",
     );
   } finally {
-    submitButton.textContent = submitLabel;
+    submitButton.textContent = translate("form.submit");
     submitButton.disabled = false;
     consultationForm.removeAttribute("aria-busy");
   }

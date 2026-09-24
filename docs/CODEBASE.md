@@ -8,6 +8,8 @@ JavaScript thuần, không có bước build và không cần cài dependency.
 - `website/index.html`: cấu trúc semantic, nội dung hiển thị và Netlify Form.
 - `website/assets/css/`: style được chia theo phạm vi trách nhiệm.
 - `website/assets/js/main.js`: hành vi chung của trang.
+- `website/assets/js/translations.js`: chuỗi giao diện VI, EN, zh-CN và lựa chọn
+  ngôn ngữ.
 - `website/assets/js/solution-carousel.js`: chỉ xử lý carousel solution.
 - `website/assets/js/motion.js`: xử lý entrance, scroll reveal và chuyển động nhẹ của trang.
 
@@ -41,6 +43,17 @@ Chỉ quản lý các hành vi cấp trang:
 - Chọn solution quan tâm từ liên kết trong card.
 - Validate email hoặc số điện thoại, kiểm tra CAPTCHA và gửi form tới Netlify
   Forms.
+- Dùng bản dịch hiện tại cho theme toggle và các thông báo trạng thái form.
+
+### `translations.js`
+
+- Tiếng Việt trong HTML là nội dung mặc định và fallback khi JavaScript không chạy.
+- Bản dịch tiếng Anh và Trung giản thể được gom theo key tại file này.
+- `#language-switcher` là nút mở menu ngôn ngữ tùy biến để giữ giao diện nhất quán
+  giữa trình duyệt; menu hỗ trợ bàn phím và lưu lựa chọn trong localStorage.
+- Khai báo `data-i18n` cho text và `data-i18n-content`, `data-i18n-aria-label`,
+  `data-i18n-title`, `data-i18n-alt`, `data-i18n-placeholder` cho thuộc tính.
+- Đặt dynamic message trong dictionary và lấy bằng `getTranslation(key)`.
 
 ### `motion.js`
 
@@ -109,6 +122,7 @@ Kiểm tra JavaScript:
 
 ```bash
 node --check website/assets/js/main.js
+node --check website/assets/js/translations.js
 node --check website/assets/js/solution-carousel.js
 node --check website/assets/js/motion.js
 ```

@@ -44,6 +44,8 @@ JavaScript.
   their load order from `docs/CODEBASE.md`.
 - `website/assets/js/main.js` owns page controls, theme, and consultation form
   behavior.
+- `website/assets/js/translations.js` owns Vietnamese, English, and Simplified
+  Chinese UI strings, language selection, and the saved language preference.
 - `website/assets/js/motion.js` owns entrance and scroll reveal, reduced-motion
   behavior, ambient preview effects, the preview catalog count, and scroll
   progress.
@@ -58,6 +60,10 @@ JavaScript.
 Keep the page content in HTML. Keep each interaction in its owning JavaScript
 file and each component's rules in its owning CSS file. Do not add build tools
 or dependencies for behavior supported by the browser.
+
+The page defaults to Vietnamese. Mark new user-facing HTML copy with a
+`data-i18n` key and add matching English and Simplified Chinese strings to
+`translations.js`. Route dynamic form and control messages through that file.
 
 For motion, read `docs/UI_GUIDELINES.md` and `docs/CODEBASE.md`. Keep chart and
 page effects in `motion.js`/`motion.css`; pause nonessential work when hidden or

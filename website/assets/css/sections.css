@@ -195,7 +195,7 @@
   font-size: 13px;
 }
 
-.contact-details span {
+.contact-details p > span:first-child {
   margin-bottom: 4px;
   display: block;
   color: rgba(255, 255, 255, 0.48);

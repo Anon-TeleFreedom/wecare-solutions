@@ -1,7 +1,8 @@
 # Wecare DatV
 
 Website catalog giới thiệu hệ sinh thái solution kỹ thuật và dịch vụ trợ giảng
-DevOps cho đội kỹ thuật, doanh nghiệp, đội nội dung và người học.
+DevOps cho đội kỹ thuật, doanh nghiệp, đội nội dung và người học. Giao diện hỗ
+trợ tiếng Việt, tiếng Anh và tiếng Trung giản thể.
 
 Khách hàng có thể mua solution kèm source code và guide, hoặc đặt lịch Wecare
 Mentor với giá 200.000đ cho 60 phút. Mỗi solution hoặc tool nằm trong một
@@ -71,7 +72,8 @@ Email nhận thông báo không được ghi vào source code.
         `-- js/
             |-- main.js
             |-- motion.js
-            `-- solution-carousel.js
+            |-- solution-carousel.js
+            `-- translations.js
 ```
 
 - `docs/`: quyết định sản phẩm và kỹ thuật.
