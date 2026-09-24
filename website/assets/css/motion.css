@@ -38,6 +38,10 @@
   animation-delay: 800ms;
 }
 
+.form-status:not(:empty) {
+  animation: notification-enter 240ms ease-out;
+}
+
 .monitor-preview,
 .contact-form {
   transition:
@@ -45,7 +49,7 @@
     box-shadow 260ms ease;
 }
 
- (hover: hover) and (pointer: fine) {
+@media (hover: hover) and (pointer: fine) {
   .site-navigation a {
     position: relative;
   }
@@ -95,6 +99,18 @@
   }
 }
 
+@keyframes notification-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes preview-orbit {
   from {
     transform: translate3d(0, 0, 0) scale(1);
@@ -139,7 +155,8 @@
 
   .motion-enabled .monitor-preview::before,
   .motion-enabled .uptime-bars span,
-  .motion-enabled .check-signal {
+  .motion-enabled .check-signal,
+  .form-status:not(:empty) {
     animation: none;
   }
 }

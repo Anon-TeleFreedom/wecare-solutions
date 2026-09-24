@@ -122,6 +122,11 @@ function validateCaptcha(form) {
   return isValid;
 }
 
+function setFormStatus(element, message, state) {
+  element.textContent = message;
+  element.dataset.state = state;
+}
+
 contactField.addEventListener("blur", () => validateContactField(contactField));
 contactField.addEventListener("input", () => {
   if (contactField.getAttribute("aria-invalid") === "true") {
@@ -135,6 +140,7 @@ consultationForm.addEventListener("submit", async (event) => {
   const nameField = consultationForm.elements.name;
   const statusElement = document.querySelector("#form-status");
   const submitButton = consultationForm.querySelector('[type="submit"]');
+  const submitLabel = submitButton.textContent;
 
   const isNameValid = validateRequiredField(
     nameField,
@@ -148,7 +154,11 @@ consultationForm.addEventListener("submit", async (event) => {
   const isCaptchaValid = validateCaptcha(consultationForm);
 
   if (!isNameValid || !isContactValid || !isInterestValid || !isCaptchaValid) {
-    statusElement.textContent = "Vui lòng kiểm tra lại thông tin đã nhập.";
+    setFormStatus(
+      statusElement,
+      "Không thể gửi. Vui lòng kiểm tra các trường được đánh dấu.",
+      "error",
+    );
     const firstInvalidField = consultationForm.querySelector(
       `input[aria-invalid="true"], select[aria-invalid="true"]`,
     );
@@ -165,7 +175,8 @@ consultationForm.addEventListener("submit", async (event) => {
 
   submitButton.disabled = true;
   consultationForm.setAttribute("aria-busy", "true");
-  statusElement.textContent = "Đang gửi yêu cầu...";
+  submitButton.textContent = "Đang gửi...";
+  setFormStatus(statusElement, "Đang gửi yêu cầu của bạn...", "loading");
 
   try {
     const response = await fetch("/", {
@@ -180,12 +191,20 @@ consultationForm.addEventListener("submit", async (event) => {
 
     consultationForm.reset();
     window.grecaptcha?.reset();
-    statusElement.textContent = "Đã gửi yêu cầu. Chúng tôi sẽ liên hệ lại sớm.";
+    setFormStatus(
+      statusElement,
+      "Yêu cầu đã được gửi thành công. Chúng tôi sẽ liên hệ lại sớm.",
+      "success",
+    );
   } catch (error) {
     console.error("Consultation form submission failed.", error);
-    statusElement.textContent =
-      "Chưa gửi được yêu cầu. Vui lòng thử lại sau khi website đã được deploy.";
+    setFormStatus(
+      statusElement,
+      "Không thể gửi yêu cầu lúc này. Vui lòng kiểm tra CAPTCHA và thử lại.",
+      "error",
+    );
   } finally {
+    submitButton.textContent = submitLabel;
     submitButton.disabled = false;
     consultationForm.removeAttribute("aria-busy");
   }
