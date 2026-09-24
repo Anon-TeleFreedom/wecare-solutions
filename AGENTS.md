@@ -2,13 +2,16 @@
 
 ## Purpose
 
-This repository contains the public WebCare Solutions marketing website.
-WebCare Solutions provides website monitoring, backup, recovery, and server
-care for freelancers, web agencies, and small businesses.
+This repository contains the public WebCare Solutions catalog website.
+It presents independently developed technical solutions to freelancers, web
+agencies, and small businesses.
 
-The current objective is to explain the services clearly and convert visitors
-into qualified consultation requests. This repository is not the internal
-monitoring platform and is not a SaaS application.
+The current objective is to help visitors find a suitable solution and contact
+the seller for consultation and a quote. After a manual bank transfer, the
+customer receives that solution's source code and integration guide.
+
+This repository is not a SaaS application, a monitoring platform, a customer
+dashboard, or the source repository for any listed solution.
 
 ## Read order
 
@@ -31,6 +34,9 @@ enough.
 - Keep the first release small enough for one person to operate.
 - Use plain HTML, CSS, and JavaScript until a framework solves a measured need.
 - The primary conversion is a consultation request by phone or contact form.
+- Each solution or tool must live in its own separate project.
+- Do not place solution source code in this catalog repository.
+- Payment is arranged manually by bank transfer after consultation.
 - Do not introduce Kubernetes, microservices, queues, or distributed systems.
 - Do not build a custom dashboard, authentication system, billing system, or
   mobile application unless the product scope explicitly changes.
@@ -91,6 +97,27 @@ python3 -m http.server 8080 --directory website
 Current validation has no dependency installation. Check HTML, CSS, JavaScript,
 responsive layout, keyboard navigation, and browser console errors.
 
+## UI quality
+
+- Keep copy concise. Each section must have one clear purpose.
+- Use a consistent type scale, spacing scale, color tokens, and layout grid.
+- Support light and dark themes through shared CSS variables.
+- Do not duplicate component styles between themes.
+- Check contrast, keyboard focus, touch targets, and readable line lengths.
+- Review the rendered UI in both themes at desktop and mobile sizes.
+- Do not add icons or visual decoration unless they improve comprehension.
+- Prefer fewer strong elements over many competing elements.
+- Prefer HTML and CSS for simple interface illustrations.
+- Use optimized SVG only when a vector asset is genuinely needed.
+- Do not store raster marketing images in this repository. Serve them through
+  ImageKit when image content is introduced.
+- Do not embed large images as base64 or data URLs.
+- Only the ImageKit URL endpoint may be used in frontend code.
+- Never expose ImageKit private keys, upload credentials, signatures, tokens,
+  or admin configuration in this public repository.
+- Add responsive `srcset`, explicit dimensions, lazy loading, and async decoding
+  when an ImageKit asset is introduced.
+
 ## Change workflow
 
 1. Inspect the smallest relevant set of files.
@@ -103,6 +130,19 @@ responsive layout, keyboard navigation, and browser console errors.
 
 Do not modify unrelated files. Preserve user changes already present in the
 workspace.
+
+## Git workflow
+
+- Develop and validate changes locally by default.
+- Do not create commits unless the user explicitly requests a commit.
+- Do not push, rename repositories, change remotes, or create branches unless
+  the user explicitly requests that exact action in the current conversation.
+- Never assume that finishing a feature includes publishing it.
+- This repository is public. Before any requested push, scan the complete diff
+  for secrets, credentials, personal information, customer data, environment
+  files, generated files, and unintended local paths.
+- Show the user what will be published before pushing when the scope is not
+  already obvious.
 
 ## Docker Compose rules
 
@@ -118,8 +158,9 @@ workspace.
 - Never run automatic unattended major-version upgrades.
 - Back up persistent data before upgrades and test restoration periodically.
 
-These rules apply when deployment files are added. Do not add internal
-monitoring services to the public website Compose project.
+These rules apply when deployment files are added. Do not add internal tools,
+solution code, customer systems, or payment processing to the website Compose
+project.
 
 ## Documentation rules
 

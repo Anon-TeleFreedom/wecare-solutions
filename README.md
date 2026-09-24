@@ -1,7 +1,11 @@
 # WebCare Solutions
 
-Website công khai giới thiệu dịch vụ monitoring, backup và server care cho
-freelancer, agency và doanh nghiệp nhỏ.
+Website catalog giới thiệu các giải pháp kỹ thuật độc lập cho freelancer, agency
+và doanh nghiệp nhỏ.
+
+Khách hàng xem giải pháp, liên hệ để được tư vấn và nhận báo giá, thanh toán
+chuyển khoản ngân hàng, sau đó nhận source code cùng guide tích hợp. Mỗi solution
+hoặc tool nằm trong một project riêng và không được đưa vào repository này.
 
 ## Chạy giao diện
 
@@ -10,6 +14,24 @@ python3 -m http.server 8080 --directory website
 ```
 
 Mở `http://localhost:8080`.
+
+## Deploy Netlify
+
+Website là static site, không có bước build. File `netlify.toml` đặt publish
+directory là `website`.
+
+Kết nối repository với Netlify và deploy. Không nhập email cá nhân, secret hoặc
+credential vào source code.
+
+Sau lần deploy đầu tiên:
+
+1. Vào `Forms` và bật form detection nếu Netlify chưa bật sẵn.
+2. Xác nhận form `consultation` đã được nhận diện.
+3. Vào `Forms > Submission notifications`.
+4. Chọn `Add notification > Email notification`.
+5. Nhập email nhận thông báo trong Netlify Dashboard.
+
+Email nhận thông báo không được ghi vào source code.
 
 ## Tài liệu
 
@@ -23,6 +45,7 @@ Mở `http://localhost:8080`.
 .
 |-- AGENTS.md
 |-- README.md
+|-- netlify.toml
 |-- docs/
 |   |-- PRODUCT.md
 |   `-- TECHNICAL_FOUNDATION.md
@@ -41,5 +64,5 @@ Mở `http://localhost:8080`.
 
 ## Trạng thái
 
-Giao diện MVP đang sử dụng HTML, CSS và JavaScript thuần. Form tư vấn chưa kết
-nối backend và chưa gửi dữ liệu ra bên ngoài.
+Giao diện MVP đang sử dụng HTML, CSS và JavaScript thuần. Form tư vấn sử dụng
+Netlify Forms. Website chưa có thanh toán online, tài khoản hoặc dashboard.

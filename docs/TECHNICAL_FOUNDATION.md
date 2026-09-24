@@ -2,25 +2,27 @@
 
 ## 1. Phạm vi repository
 
-Repository hiện tại là `webcare-site`, chứa website công khai của WebCare
-Solutions.
+Repository hiện tại là `webcare-site`, chứa website catalog công khai của
+WebCare Solutions.
 
 Mục tiêu:
 
-- Giới thiệu vấn đề và giải pháp rõ ràng.
-- Tạo yêu cầu tư vấn qua form hoặc điện thoại.
+- Giúp khách hàng tìm và hiểu từng giải pháp.
+- Tạo yêu cầu tư vấn và báo giá qua form hoặc điện thoại.
 - Tải nhanh trên thiết bị di động.
 - Triển khai đơn giản bằng Docker Compose trên một máy chủ.
 
 Không thuộc phạm vi repository:
 
-- Hệ thống monitoring nội bộ.
+- Source code của các solution hoặc tool.
+- Backend platform dùng chung.
 - Dữ liệu hoặc thông tin truy cập của khách hàng.
 - Customer portal.
 - Thanh toán trực tuyến.
 - Dashboard vận hành.
 
-Các thành phần vận hành nội bộ sau này thuộc repository `webcare-ops`.
+Mỗi solution hoặc tool có repository và vòng đời riêng. Website chỉ chứa nội
+dung catalog, thông tin mua hàng và kênh liên hệ.
 
 ## 2. Nền tảng giao diện
 
@@ -55,9 +57,13 @@ Static website
   +--> Form yêu cầu tư vấn
 ```
 
-Form hiện tại chỉ là giao diện phía client. Trước khi triển khai production cần
-chọn một endpoint tiếp nhận form, bổ sung chống spam, validation phía server và
-thông báo quyền riêng tư.
+Form tư vấn sử dụng Netlify Forms và được gửi bằng AJAX. Netlify nhận submission,
+lọc spam bằng honeypot và gửi thông báo tới email được cấu hình riêng trong
+Netlify Dashboard. Email nhận thông báo không nằm trong source code.
+
+Thông tin tài khoản ngân hàng không được hard-code trong source public. Thông tin
+thanh toán được gửi cho khách sau khi nhu cầu, giá và phạm vi bàn giao đã được
+xác nhận.
 
 ## 4. Cấu trúc file
 
@@ -82,13 +88,38 @@ Chỉ thêm asset hoặc thư mục khi có nội dung thực tế.
 
 - Dùng tiếng Việt rõ ràng, hạn chế thuật ngữ hạ tầng.
 - Mỗi section trả lời một câu hỏi của khách hàng.
-- Tập trung vào kết quả thay vì tên công cụ.
+- Tập trung vào kết quả, phạm vi source code và nội dung guide.
+- Nói rõ mỗi solution là một project độc lập.
 - Luôn có đường dẫn rõ đến form tư vấn.
 - Không đưa số liệu, khách hàng hoặc cam kết chưa được kiểm chứng.
 - Không dùng ảnh stock trong MVP.
+- Ưu tiên HTML và CSS cho minh họa giao diện đơn giản.
+- Chỉ dùng SVG đã tối ưu khi thật sự cần asset vector.
+- Không lưu ảnh raster marketing trong repository. Khi có nội dung ảnh, sử dụng
+  ImageKit để phân phối và tối ưu kích thước.
+- Không nhúng ảnh lớn dưới dạng base64 hoặc data URL.
 - Hỗ trợ màn hình nhỏ từ 360px.
 - Tôn trọng `prefers-reduced-motion`.
 - Dùng HTML semantic và trạng thái focus nhìn thấy được.
+
+### ImageKit
+
+Website dùng một CDN prefix để ghép với asset path. Không cần ImageKit SDK khi
+chỉ hiển thị ảnh.
+
+- Frontend chỉ được dùng URL endpoint công khai và asset path.
+- Không sao chép private key, upload token, signature hoặc cấu hình CMS.
+- Upload ảnh thực hiện qua ImageKit Dashboard hoặc backend riêng.
+- URL ảnh phải dùng transformation theo kích thước hiển thị.
+- Ảnh ngoài màn hình đầu dùng `loading="lazy"` và `decoding="async"`.
+- Luôn khai báo `width`, `height`, `alt` và `srcset` để tránh layout shift.
+- Chưa thêm runtime code khi chưa có asset WebCare thực tế.
+
+Mẫu URL, sử dụng placeholder thay vì endpoint thật:
+
+```text
+https://ik.imagekit.io/your_imagekit_id/tr:w-768,q-auto,f-auto/webcare/asset.webp
+```
 
 ## 6. Luồng chuyển đổi
 
@@ -96,13 +127,13 @@ Chỉ thêm asset hoặc thư mục khi có nội dung thực tế.
 Nhận biết vấn đề
   |
   v
-Xem giải pháp phù hợp
+Xem solution phù hợp
   |
   v
-Hiểu quy trình và phạm vi
+Hiểu source code và phạm vi bàn giao
   |
   v
-Gửi yêu cầu tư vấn
+Liên hệ, nhận báo giá và thanh toán chuyển khoản
 ```
 
 Chỉ số cần đo sau khi có analytics hợp lệ:
@@ -133,13 +164,13 @@ HTTP thực tế.
 Website sẽ chạy bằng Docker Compose trên máy chủ hiện có. Compose chỉ phục vụ
 static website và reverse proxy cần thiết.
 
-Trước khi triển khai cần biết:
+Trước khi triển khai website cần biết:
 
 - Domain chính thức.
-- Email nhận form.
+- Kênh nhận yêu cầu tư vấn.
 - Số hotline.
-- Endpoint xử lý form.
 - Chính sách lưu dữ liệu liên hệ.
+- Quy trình báo giá, thanh toán ngân hàng và bàn giao source code.
 
 Chỉ công khai cổng 80 và 443. Image phải được gắn phiên bản cụ thể. Cấu hình
 production sẽ được thêm sau khi domain và máy chủ được xác nhận.
