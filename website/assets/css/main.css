@@ -855,8 +855,39 @@ h3 {
   color: rgba(255, 255, 255, 0.68);
 }
 
+.advisor {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.advisor-avatar {
+  width: 64px;
+  height: 64px;
+  flex: 0 0 auto;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+}
+
+.advisor div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.advisor strong {
+  font-size: 14px;
+}
+
+.advisor span {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 12px;
+}
+
 .contact-details {
-  margin-top: 48px;
+  margin-top: 36px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
