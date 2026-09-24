@@ -88,7 +88,7 @@
   content: "";
 }
 
-.solution-card:nth-child(2n)::before {
+.solution-card.accent-card::before {
   background: var(--amber);
 }
 
@@ -117,7 +117,7 @@
   font-weight: 850;
 }
 
-.solution-card:nth-child(2n) .card-index {
+.solution-card.accent-card .card-index {
   color: var(--ink);
   background: var(--amber);
 }
@@ -198,6 +198,27 @@
 
 .featured-card .text-link {
   color: var(--link);
+}
+
+.card-price {
+  margin-top: 18px !important;
+  padding: 12px 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  background: var(--mint-light);
+  border-radius: 12px;
+}
+
+.card-price strong {
+  color: var(--ink);
+  font-size: 19px;
+  letter-spacing: -0.03em;
+}
+
+.card-price span {
+  color: var(--ink-soft);
+  font-size: 11px;
 }
 
 .solution-carousel-footer {

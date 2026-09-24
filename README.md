@@ -1,11 +1,11 @@
 # WebCare DatV
 
-Website catalog giới thiệu hệ sinh thái solution kỹ thuật độc lập cho đội kỹ thuật,
-doanh nghiệp, đội nội dung và khách hàng có nhu cầu cụ thể.
+Website catalog giới thiệu hệ sinh thái solution kỹ thuật và dịch vụ trợ giảng
+DevOps cho đội kỹ thuật, doanh nghiệp, đội nội dung và người học.
 
-Khách hàng xem giải pháp, liên hệ để được tư vấn và nhận báo giá, thanh toán
-chuyển khoản ngân hàng, sau đó nhận source code cùng guide tích hợp. Mỗi solution
-hoặc tool nằm trong một project riêng và không được đưa vào repository này.
+Khách hàng có thể mua solution kèm source code và guide, hoặc đặt lịch WebCare
+Mentor với giá 200.000đ cho 60 phút. Mỗi solution hoặc tool nằm trong một
+project riêng và không được đưa vào repository này.
 
 ## Chạy giao diện
 
@@ -62,11 +62,13 @@ Email nhận thông báo không được ghi vào source code.
         |   |-- hero.css
         |   |-- solutions.css
         |   |-- sections.css
+        |   |-- motion.css
         |   `-- responsive.css
         |-- img/
         |   `-- favicon.svg
         `-- js/
             |-- main.js
+            |-- motion.js
             `-- solution-carousel.js
 ```
 

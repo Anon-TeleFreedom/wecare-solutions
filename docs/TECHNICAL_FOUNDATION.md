@@ -80,11 +80,13 @@ website/
       hero.css
       solutions.css
       sections.css
+      motion.css
       responsive.css
     img/
       favicon.svg
     js/
       main.js
+      motion.js
       solution-carousel.js
 ```
 
@@ -133,13 +135,13 @@ https://ik.imagekit.io/your_imagekit_id/tr:w-768,q-auto,f-auto/webcare/asset.web
 Nhận biết vấn đề
   |
   v
-Xem solution phù hợp
+Xem sản phẩm hoặc dịch vụ phù hợp
   |
   v
-Hiểu source code và phạm vi bàn giao
+Hiểu phạm vi và kết quả nhận được
   |
   v
-Liên hệ, nhận báo giá và thanh toán chuyển khoản
+Liên hệ, xác nhận lịch hoặc báo giá và thanh toán
 ```
 
 Chỉ số cần đo sau khi có analytics hợp lệ:
@@ -184,7 +186,7 @@ phiên bản image cụ thể. Không thêm hạ tầng self-host khi chưa có 
 
 - Hiển thị tốt trên desktop và mobile.
 - Navigation hoạt động.
-- Nội dung mô tả đúng bốn solution.
+- Nội dung mô tả đúng bốn solution và một dịch vụ trợ giảng DevOps.
 - Form có validation phía client.
 - Không có lỗi JavaScript trong console.
 - Điều hướng bằng bàn phím sử dụng được.

@@ -3,8 +3,8 @@
 ## 1. Brand and purpose
 
 - Present WebCare DatV as a solution ecosystem, not a single-product website.
-- Keep the four catalog items visible: WebCare Incident, WebCare App Notify,
-  WebCare Pages and WebCare GitOps.
+- Keep five catalog items visible: WebCare Incident, WebCare App Notify, WebCare
+  Pages, WebCare GitOps and WebCare Mentor.
 - Use concise Vietnamese copy. English technical terms are allowed when they are
   standard and clearer than a forced translation.
 - Do not invent customers, partners, testimonials, metrics or product maturity.
@@ -32,9 +32,10 @@
   `Trước` and `Tiếp` controls.
 - Keep the carousel usable when JavaScript fails. Native horizontal scrolling is
   the baseline behavior.
-- Show the current position and total number of solutions.
+- Show the current position and total number of catalog items.
 - Keep every card structure consistent: number, category, title, short summary,
-  three capabilities and one consultation action.
+  three capabilities and one consultation action. A service card may also show a
+  verified public price.
 - Avoid large empty areas inside cards. Cards in the same row should feel equal
   without using an excessive fixed height.
 - Do not use strong filled backgrounds to alternate neighboring cards. Use small
@@ -75,7 +76,17 @@
 - Preserve a functional no-JavaScript baseline.
 - Respect reduced-motion preferences in every scripted animation.
 
-## 7. Review checklist
+## 7. Motion
+
+- Use motion to clarify entry, hierarchy or interaction feedback.
+- Keep entrance and reveal animations short and run them once.
+- Limit continuous motion to small ambient elements in the hero preview.
+- Do not hide meaningful content when JavaScript is unavailable.
+- Avoid parallax, autoplay carousels and large looping page animations.
+- Disable nonessential animation for `prefers-reduced-motion`.
+- Keep motion logic in `motion.js` and motion styles in `motion.css`.
+
+## 8. Review checklist
 
 Before completing a UI change:
 

@@ -3,12 +3,13 @@
 ## Purpose
 
 This repository contains the public WebCare DatV catalog website.
-It presents independently developed technical solutions for engineering teams,
-businesses, content teams, and other customers with a defined technical need.
+It presents independently developed technical solutions and DevOps tutoring for
+engineering teams, businesses, content teams, and individual learners.
 
-The current objective is to help visitors find a suitable solution and contact
-the seller for consultation and a quote. After a manual bank transfer, the
-customer receives that solution's source code and integration guide.
+The current objective is to help visitors find a suitable solution or tutoring
+service and contact the seller. After a manual bank transfer, a solution customer
+receives source code and an integration guide, while a tutoring customer
+receives the agreed meeting.
 
 This repository is not a SaaS application, a monitoring platform, a customer
 dashboard, or the source repository for any listed solution.

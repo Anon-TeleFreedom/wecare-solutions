@@ -2,8 +2,8 @@
 
 ## 1. Định vị
 
-WebCare DatV là hệ sinh thái các solution kỹ thuật được tư vấn, phát triển
-và bàn giao theo nhu cầu thực tế của khách hàng.
+WebCare DatV là hệ sinh thái solution kỹ thuật và dịch vụ trợ giảng DevOps
+được cung cấp theo nhu cầu thực tế của khách hàng.
 
 `webcare-site` là website catalog và kênh nhận yêu cầu tư vấn. Website không phải
 backend dùng chung cho các sản phẩm.
@@ -122,6 +122,30 @@ Phạm vi sản phẩm dự kiến:
 Không khóa sản phẩm vào một Git provider, registry, scanner hoặc cloud duy nhất.
 Bộ tích hợp cụ thể được chốt theo nhu cầu khách hàng.
 
+### WebCare Mentor
+
+Dịch vụ trợ giảng DevOps theo giờ, không phải một tool hoặc backend riêng. Dịch
+vụ dành cho người học, developer chuyển hướng sang DevOps và đội kỹ thuật cần
+một buổi trợ giảng tập trung để gỡ vướng.
+
+Hình thức và giá:
+
+- Meeting online 1:1 hoặc theo nhóm nhỏ.
+- Thời lượng tiêu chuẩn 60 phút.
+- Giá công khai 200.000đ cho mỗi 60 phút.
+- Nội dung buổi meeting được thống nhất trước khi thanh toán.
+
+Phạm vi có thể trao đổi:
+
+- Xây lộ trình học DevOps phù hợp với nền tảng hiện tại.
+- Gợi ý và giải thích tài liệu học.
+- Giải đáp Linux, container, CI/CD, monitoring, GitOps và vận hành hệ thống.
+- Review kiến trúc, pipeline hoặc phương án triển khai ở mức tư vấn.
+- Chuẩn bị nội dung thực hành hoặc phỏng vấn theo nhu cầu.
+
+Dịch vụ không cam kết việc làm, chứng chỉ hoặc kết quả học tập. Không yêu cầu
+credential production của khách hàng trong một buổi trợ giảng thông thường.
+
 ## 3. Quan hệ giữa WebCare Incident và App Notify
 
 ```text
@@ -141,7 +165,8 @@ WebCare Incident sở hữu logic tiếp nhận, chuẩn hóa, chống trùng, r
 hợp xử lý, không triển khai lại logic của WebCare Incident.
 
 WebCare Pages và WebCare GitOps là hai sản phẩm độc lập, không phụ thuộc vào cặp
-sản phẩm incident và notify.
+sản phẩm incident và notify. WebCare Mentor là dịch vụ trợ giảng độc lập,
+không cần một repository sản phẩm riêng.
 
 ## 4. Ranh giới repository
 
@@ -163,6 +188,7 @@ chung chỉ để tiện phát triển ban đầu.
 - Doanh nghiệp cần công cụ phù hợp với quy trình nội bộ.
 - Đội marketing hoặc content vận hành nhiều kênh.
 - Đội kỹ thuật nhỏ muốn self-host và làm chủ dữ liệu.
+- Người học, developer chuyển hướng sang DevOps hoặc cần trợ giảng theo giờ.
 
 ## 6. Mô hình tư vấn và bàn giao
 
@@ -173,13 +199,13 @@ Khách hàng mô tả vấn đề
 WebCare phân tích nhu cầu
           |
           v
-Chọn hoặc điều chỉnh solution
+Chọn solution hoặc đặt lịch trợ giảng
           |
           v
 Chốt phạm vi và báo giá
           |
           v
-Bàn giao source code, guide và hỗ trợ tích hợp
+Bàn giao solution hoặc thực hiện buổi trợ giảng
 ```
 
 Thanh toán trước mắt qua chuyển khoản ngân hàng. Không hard-code email cá nhân,
@@ -196,11 +222,12 @@ thông tin ngân hàng, credentials hoặc secret vào repository.
 
 ## 8. Thứ tự phát triển
 
-1. Chốt MVP và xây WebCare Incident trước.
-2. Ổn định API sự kiện giữa WebCare Incident và WebCare App Notify.
-3. Xây WebCare App Notify với phạm vi notification và xử lý incident.
-4. Xác thực nhu cầu và API nền tảng trước khi xây WebCare Pages.
-5. Chốt bộ công cụ mặc định trước khi xây WebCare GitOps.
+1. Mở lịch WebCare Mentor với phạm vi và giá công khai.
+2. Chốt MVP và xây WebCare Incident trước.
+3. Ổn định API sự kiện giữa WebCare Incident và WebCare App Notify.
+4. Xây WebCare App Notify với phạm vi notification và xử lý incident.
+5. Xác thực nhu cầu và API nền tảng trước khi xây WebCare Pages.
+6. Chốt bộ công cụ mặc định trước khi xây WebCare GitOps.
 
 Không phát triển đồng thời cả bốn backend ở giai đoạn đầu.
 
@@ -215,7 +242,8 @@ Không phát triển đồng thời cả bốn backend ở giai đoạn đầu.
 
 ## 10. Việc cần làm tiếp theo
 
-- [x] Chốt bốn solution trong catalog.
+- [x] Chốt bốn solution và một dịch vụ mentor trong catalog.
+- [x] Công khai mức giá WebCare Mentor.
 - [x] Tách ranh giới repository.
 - [x] Chọn Versus Incident làm tham chiếu cho luồng incident.
 - [ ] Chốt MVP của WebCare Incident.
