@@ -3,14 +3,14 @@
 ## 1. Phạm vi repository
 
 Repository hiện tại là `webcare-site`, chứa website catalog công khai của
-WebCare Solutions.
+WebCare DatV.
 
 Mục tiêu:
 
 - Giúp khách hàng tìm và hiểu từng giải pháp.
-- Tạo yêu cầu tư vấn và báo giá qua form hoặc điện thoại.
+- Tạo yêu cầu tư vấn và báo giá qua form.
 - Tải nhanh trên thiết bị di động.
-- Triển khai đơn giản bằng Docker Compose trên một máy chủ.
+- Triển khai static site đơn giản trên Netlify.
 
 Không thuộc phạm vi repository:
 
@@ -36,7 +36,7 @@ Phiên bản đầu sử dụng:
 | Font | System font, không tải từ bên thứ ba |
 | Build step | Không có |
 | Local preview | Python HTTP server |
-| Production | Static files qua web server trong Docker Compose |
+| Production | Netlify static hosting |
 
 Không dùng framework khi chưa có nhu cầu về routing phức tạp, trạng thái ứng
 dụng hoặc component dùng lại ở quy mô lớn.
@@ -47,14 +47,10 @@ dụng hoặc component dùng lại ở quy mô lớn.
 Khách truy cập
   |
   v
-Reverse proxy
+Netlify static website
   |
   v
-Static website
-  |
-  +--> Hotline
-  |
-  +--> Form yêu cầu tư vấn
+Form yêu cầu tư vấn
 ```
 
 Form tư vấn sử dụng Netlify Forms và được gửi bằng AJAX. Netlify nhận submission,
@@ -71,15 +67,25 @@ xác nhận.
 AGENTS.md
 README.md
 docs/
+  CODEBASE.md
   PRODUCT.md
   TECHNICAL_FOUNDATION.md
+  UI_GUIDELINES.md
 website/
   index.html
   assets/
     css/
-      main.css
+      tokens.css
+      foundation.css
+      hero.css
+      solutions.css
+      sections.css
+      responsive.css
+    img/
+      favicon.svg
     js/
       main.js
+      solution-carousel.js
 ```
 
 Chỉ thêm asset hoặc thư mục khi có nội dung thực tế.
@@ -159,27 +165,26 @@ http://localhost:8080
 Không mở trực tiếp bằng `file://` vì hành vi trình duyệt có thể khác môi trường
 HTTP thực tế.
 
-## 8. Triển khai dự kiến
+## 8. Triển khai
 
-Website sẽ chạy bằng Docker Compose trên máy chủ hiện có. Compose chỉ phục vụ
-static website và reverse proxy cần thiết.
+Website hiện được triển khai dưới dạng static site trên Netlify. Không có bước
+build. Docker Compose chỉ là lựa chọn dự phòng nếu cần self-host sau này.
 
 Trước khi triển khai website cần biết:
 
 - Domain chính thức.
 - Kênh nhận yêu cầu tư vấn.
-- Số hotline.
 - Chính sách lưu dữ liệu liên hệ.
 - Quy trình báo giá, thanh toán ngân hàng và bàn giao source code.
 
-Chỉ công khai cổng 80 và 443. Image phải được gắn phiên bản cụ thể. Cấu hình
-production sẽ được thêm sau khi domain và máy chủ được xác nhận.
+Khi self-host bằng Docker Compose, chỉ công khai cổng 80 và 443, đồng thời gắn
+phiên bản image cụ thể. Không thêm hạ tầng self-host khi chưa có yêu cầu thực tế.
 
 ## 9. Điều kiện hoàn thành MVP giao diện
 
 - Hiển thị tốt trên desktop và mobile.
 - Navigation hoạt động.
-- Nội dung mô tả đúng ba giải pháp.
+- Nội dung mô tả đúng bốn solution.
 - Form có validation phía client.
 - Không có lỗi JavaScript trong console.
 - Điều hướng bằng bàn phím sử dụng được.

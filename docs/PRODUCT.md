@@ -1,166 +1,225 @@
-# WebCare Solutions: Catalog giải pháp kỹ thuật
+# WebCare DatV: Hệ sinh thái Solution
 
-## 1. Mô hình sản phẩm
+## 1. Định vị
 
-WebCare Solutions là website catalog giúp khách hàng tìm một giải pháp kỹ thuật
-phù hợp với vấn đề của họ.
+WebCare DatV là hệ sinh thái các solution kỹ thuật được tư vấn, phát triển
+và bàn giao theo nhu cầu thực tế của khách hàng.
 
-Website không phải SaaS, marketplace tự động hoặc hệ thống vận hành website cho
-khách hàng.
+`webcare-site` là website catalog và kênh nhận yêu cầu tư vấn. Website không phải
+backend dùng chung cho các sản phẩm.
 
-Mỗi solution hoặc tool:
+Mỗi solution:
 
-- Là một project độc lập.
-- Có source code riêng.
-- Có guide cài đặt, cấu hình và tích hợp.
-- Có phạm vi bàn giao và hỗ trợ riêng.
-- Không nằm trong repository `webcare-site`.
+- Là một project và repository độc lập.
+- Có phạm vi, source code, guide và lộ trình riêng.
+- Có thể chạy độc lập hoặc tích hợp với solution khác qua API.
+- Chỉ được giới thiệu là sẵn sàng khi đã được kiểm thử.
 
-## 2. Khách hàng mục tiêu
+## 2. Danh mục solution
 
-- Freelancer quản lý nhiều website.
-- Agency cần giải pháp để triển khai cho khách hàng.
-- Doanh nghiệp nhỏ có đội kỹ thuật nhưng thiếu một công cụ cụ thể.
-- Developer hoặc DevOps muốn mua source code có thể tự triển khai.
+### WebCare Incident
 
-## 3. Giá trị cung cấp
+Repository dự kiến: `webcare-incident`.
 
-Khách hàng không phải tự tìm và ghép nhiều công cụ từ đầu. Họ được:
+Lớp API trung gian nhận incident đã được tạo bởi các hệ thống monitoring, chuẩn
+hóa dữ liệu và điều phối tới đúng người hoặc kênh xử lý.
 
-- Tư vấn solution phù hợp.
-- Biết rõ vấn đề solution giải quyết.
-- Biết source code và guide nào được bàn giao.
-- Nhận báo giá trước khi thanh toán.
-- Có hỗ trợ tích hợp theo phạm vi đã mua.
+Phạm vi dự kiến:
 
-## 4. Nhóm solution ban đầu
+- Nhận alert qua HTTP API và webhook.
+- Adapter cho Alertmanager, vmalert, InfluxDB notification và generic webhook.
+- Chuẩn hóa severity, label, service, team và trạng thái.
+- Gom nhóm, chống trùng và quản lý vòng đời incident.
+- ACK, silence, routing và escalation.
+- Gửi tới WebCare App Notify, email, Telegram hoặc webhook khác.
+- Lưu lịch sử thay đổi để truy vết.
+- Self-hosted bằng Docker Compose.
 
-### Website Monitoring
+Sản phẩm không phải datasource, metrics collector hoặc time-series database. Nó
+không scrape, lưu hay truy vấn metrics và không thay thế Prometheus, InfluxDB,
+VictoriaMetrics hoặc Alertmanager.
 
-Giải quyết việc website gặp sự cố nhưng không được phát hiện sớm.
+Versus Incident là sản phẩm tham chiếu về webhook intake, template, notification,
+ACK và escalation. WebCare Incident không sao chép source code hoặc tuyên bố có
+quan hệ hợp tác với Versus Incident.
 
-Sản phẩm có thể gồm:
+MVP không gồm AI agent đọc log, phát hiện anomaly hoặc tự tạo alert rule.
 
-- Source code hoặc cấu hình monitoring.
-- Kiểm tra uptime, SSL và domain.
-- Cảnh báo Telegram hoặc email.
-- Docker Compose.
-- Guide cài đặt và cấu hình.
+### WebCare App Notify
 
-### Backup and Recovery
+Repository dự kiến: `webcare-app-notify`.
 
-Giải quyết việc backup thiếu nhất quán hoặc chưa có quy trình khôi phục.
+Ứng dụng nhận notification và phối hợp xử lý theo từng incident. App nhận dữ liệu
+đã chuẩn hóa từ WebCare Incident.
 
-Sản phẩm có thể gồm:
+Phạm vi dự kiến:
 
-- Script backup.
-- Chính sách lưu giữ mẫu.
-- Cấu hình nơi lưu trữ.
-- Quy trình restore.
-- Guide backup và khôi phục.
+- Đăng nhập, người dùng và đội nhóm.
+- Nhận push notification.
+- Danh sách và chi tiết incident đang mở.
+- ACK, nhận xử lý, giao người phụ trách và cập nhật trạng thái.
+- Bình luận trong từng incident.
+- Timeline từ lúc phát hiện tới khi khắc phục.
+- Deep link từ notification tới đúng incident.
 
-### Server Care
+Phiên bản đầu không phải ứng dụng chat tổng quát và không cố thay thế Slack hoặc
+Microsoft Teams.
 
-Giải quyết việc máy chủ thiếu theo dõi và quy trình bảo trì.
+### WebCare Pages
 
-Sản phẩm có thể gồm:
+Repository dự kiến: `webcare-pages`.
 
-- Cấu hình theo dõi tài nguyên.
-- Mẫu hardening firewall và SSH.
-- Checklist bảo trì.
-- Docker Compose nếu phù hợp.
-- Guide triển khai.
+Công cụ quản lý nội dung và tự động đăng bài lên nhiều nền tảng mạng xã hội từ
+một quy trình chung.
 
-Danh sách trên là nhóm catalog. Mỗi sản phẩm cụ thể vẫn phải có repository và
-tài liệu riêng.
+Phạm vi dự kiến:
 
-## 5. Quy trình mua hàng
+- Quản lý nhiều tài khoản, trang và kênh.
+- Soạn nội dung một lần và tùy chỉnh theo từng nền tảng.
+- Lịch nội dung và hàng đợi đăng bài.
+- Quy trình draft, review, approve và publish.
+- Tự động đăng bài theo lịch.
+- Theo dõi trạng thái, lỗi và lịch sử publish.
+- Quản lý media qua dịch vụ lưu trữ được cấu hình.
+
+Mỗi nền tảng có API, quyền truy cập và chính sách riêng. Chỉ công bố tích hợp khi
+đã kiểm tra API và điều khoản của nền tảng đó.
+
+### WebCare GitOps
+
+Repository dự kiến: `webcare-gitops`.
+
+Bộ công cụ và template giúp khách hàng thiết lập quy trình GitOps mà không phải
+tự ghép toàn bộ thành phần từ đầu.
+
+Solution phải trả lời rõ ba câu hỏi:
+
+1. Lưu trữ ở đâu?
+   - Source và cấu hình trong Git repository.
+   - Container image trong container registry.
+   - Artifact hoặc file lớn trong object storage khi cần.
+   - Secret nằm trong secret manager hoặc cơ chế mã hóa phù hợp.
+2. Scan như thế nào?
+   - Scan source, dependency, secret, IaC và container image.
+   - Có quality gate và chính sách chặn trước khi deploy.
+   - Lưu kết quả scan để audit.
+3. Deploy như thế nào?
+   - Pipeline build tạo artifact bất biến.
+   - Git là source of truth cho cấu hình môi trường.
+   - GitOps controller đồng bộ trạng thái mong muốn xuống môi trường chạy.
+   - Có promotion, approval, rollback và lịch sử thay đổi.
+
+Phạm vi sản phẩm dự kiến:
+
+- Template repository và cấu trúc môi trường.
+- Pipeline build, scan và publish image.
+- Cấu hình registry, object storage và secret management.
+- Template GitOps controller cho môi trường mục tiêu.
+- Chính sách deployment và rollback.
+- Docker Compose cho thành phần phù hợp, Kubernetes khi khách hàng cần.
+- Guide cài đặt, tích hợp và vận hành.
+
+Không khóa sản phẩm vào một Git provider, registry, scanner hoặc cloud duy nhất.
+Bộ tích hợp cụ thể được chốt theo nhu cầu khách hàng.
+
+## 3. Quan hệ giữa WebCare Incident và App Notify
 
 ```text
-Khách xem catalog
-  |
-  v
-Chọn solution hoặc mô tả vấn đề
-  |
-  v
-Liên hệ để được tư vấn
-  |
-  v
-Xác nhận phạm vi và báo giá
-  |
-  v
-Chuyển khoản ngân hàng
-  |
-  v
-Nhận source code và guide
-  |
-  v
-Hỗ trợ tích hợp theo thỏa thuận
+Alertmanager / vmalert / HTTP notification
+                    |
+                    v
+            WebCare Incident
+                    |
+          API, webhook, event
+                    |
+                    v
+          WebCare App Notify
 ```
 
-Website chưa cần checkout hoặc thanh toán online.
+WebCare Incident sở hữu logic tiếp nhận, chuẩn hóa, chống trùng, routing và vòng
+đời incident. WebCare App Notify tập trung vào trải nghiệm nhận thông báo và phối
+hợp xử lý, không triển khai lại logic của WebCare Incident.
 
-Thông tin tài khoản ngân hàng chỉ gửi sau khi đơn hàng và giá đã được xác nhận.
-Không hard-code thông tin tài khoản thật trong repository public.
+WebCare Pages và WebCare GitOps là hai sản phẩm độc lập, không phụ thuộc vào cặp
+sản phẩm incident và notify.
 
-## 6. Nội dung website MVP
+## 4. Ranh giới repository
 
-- Trang chủ.
-- Danh sách solution.
-- Lợi ích và vấn đề được giải quyết.
-- Phạm vi source code được bàn giao.
-- Công nghệ sử dụng.
-- Quy trình mua hàng.
-- Kênh liên hệ tư vấn.
-- Câu hỏi thường gặp.
+```text
+webcare-site
+webcare-incident
+webcare-app-notify
+webcare-pages
+webcare-gitops
+```
 
-Mỗi solution sau này nên có trang chi tiết riêng gồm:
+Không gom source code của các solution vào `webcare-site` hoặc vào một monorepo
+chung chỉ để tiện phát triển ban đầu.
 
-- Vấn đề.
-- Đối tượng phù hợp.
-- Tính năng.
-- Yêu cầu hệ thống.
-- Thành phần source code.
-- Nội dung guide.
-- Phạm vi hỗ trợ.
-- Cách nhận báo giá.
+## 5. Khách hàng mục tiêu
 
-## 7. Những thứ chưa xây
+- Đội DevOps, Platform và SRE.
+- Đội phát triển phần mềm cần chuẩn hóa triển khai.
+- Doanh nghiệp cần công cụ phù hợp với quy trình nội bộ.
+- Đội marketing hoặc content vận hành nhiều kênh.
+- Đội kỹ thuật nhỏ muốn self-host và làm chủ dữ liệu.
 
-- Customer dashboard.
-- Tài khoản người dùng.
-- Backend platform dùng chung.
+## 6. Mô hình tư vấn và bàn giao
+
+```text
+Khách hàng mô tả vấn đề
+          |
+          v
+WebCare phân tích nhu cầu
+          |
+          v
+Chọn hoặc điều chỉnh solution
+          |
+          v
+Chốt phạm vi và báo giá
+          |
+          v
+Bàn giao source code, guide và hỗ trợ tích hợp
+```
+
+Thanh toán trước mắt qua chuyển khoản ngân hàng. Không hard-code email cá nhân,
+thông tin ngân hàng, credentials hoặc secret vào repository.
+
+## 7. Nguyên tắc nội dung công khai
+
+- Không bịa khách hàng, đối tác, chuyên gia, logo hoặc lời chứng thực.
+- Chỉ công bố tên hoặc logo khi đã có sự đồng ý.
+- Không tuyên bố tính năng hoặc tích hợp đã sẵn sàng khi chưa kiểm thử.
+- Không gây hiểu nhầm về quan hệ với sản phẩm tham chiếu hoặc bên thứ ba.
+- Dùng giá trị có thể kiểm chứng như source bàn giao, self-hosted và guide.
+- Có thể mời khách hàng tham gia design partner để tạo bằng chứng sử dụng thật.
+
+## 8. Thứ tự phát triển
+
+1. Chốt MVP và xây WebCare Incident trước.
+2. Ổn định API sự kiện giữa WebCare Incident và WebCare App Notify.
+3. Xây WebCare App Notify với phạm vi notification và xử lý incident.
+4. Xác thực nhu cầu và API nền tảng trước khi xây WebCare Pages.
+5. Chốt bộ công cụ mặc định trước khi xây WebCare GitOps.
+
+Không phát triển đồng thời cả bốn backend ở giai đoạn đầu.
+
+## 9. Những thứ chưa nằm trong website catalog
+
+- Backend thực thi của từng solution.
+- Dashboard sản phẩm thật.
+- Tài khoản khách hàng.
 - Thanh toán online.
-- Quản lý subscription.
-- Monitoring hoặc backup chạy trực tiếp trong website catalog.
-- Kho source code của các solution.
-
-## 8. Nguyên tắc công khai
-
-- Không công khai secret hoặc credentials.
-- Không công khai thông tin tài khoản ngân hàng thật trong source.
-- Không đưa source code solution vào website catalog.
-- Không dùng tên hoặc logo bên thứ ba theo cách gây hiểu nhầm quan hệ hợp tác.
-- Nói rõ khi khách hàng cần tự mua license bên thứ ba.
-- Không đưa số liệu khách hàng hoặc cam kết chưa được kiểm chứng.
-
-## 9. Tiêu chí xác thực mô hình
-
-Mô hình có tín hiệu tốt khi:
-
-- Khách hàng hiểu mỗi solution là một sản phẩm riêng.
-- Khách hàng gửi yêu cầu tư vấn cho một vấn đề cụ thể.
-- Có người chấp nhận báo giá.
-- Có đơn hàng thanh toán chuyển khoản.
-- Source code và guide đủ rõ để khách hàng triển khai.
-- Câu hỏi hỗ trợ lặp lại được đưa ngược vào guide.
+- Kho source code của solution.
+- Dữ liệu vận hành hoặc social account của khách hàng.
 
 ## 10. Việc cần làm tiếp theo
 
-- [ ] Chốt ba solution đầu tiên.
-- [ ] Viết trang chi tiết cho từng solution.
-- [ ] Chốt kênh liên hệ công khai.
-- [ ] Chuẩn hóa mẫu báo giá.
-- [ ] Chuẩn hóa quy trình xác nhận chuyển khoản.
-- [ ] Tạo template repository riêng cho mỗi tool.
-- [ ] Tạo template guide bàn giao.
+- [x] Chốt bốn solution trong catalog.
+- [x] Tách ranh giới repository.
+- [x] Chọn Versus Incident làm tham chiếu cho luồng incident.
+- [ ] Chốt MVP của WebCare Incident.
+- [ ] Chọn stack kỹ thuật và event schema.
+- [ ] Tạo repository `webcare-incident`.
+- [ ] Thiết kế API webhook đầu tiên.
+- [ ] Xác thực nhu cầu riêng cho WebCare Pages và WebCare GitOps.

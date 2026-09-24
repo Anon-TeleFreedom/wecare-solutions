@@ -1,7 +1,7 @@
-# WebCare Solutions
+# WebCare DatV
 
-Website catalog giới thiệu các giải pháp kỹ thuật độc lập cho freelancer, agency
-và doanh nghiệp nhỏ.
+Website catalog giới thiệu hệ sinh thái solution kỹ thuật độc lập cho đội kỹ thuật,
+doanh nghiệp, đội nội dung và khách hàng có nhu cầu cụ thể.
 
 Khách hàng xem giải pháp, liên hệ để được tư vấn và nhận báo giá, thanh toán
 chuyển khoản ngân hàng, sau đó nhận source code cùng guide tích hợp. Mỗi solution
@@ -37,6 +37,8 @@ Email nhận thông báo không được ghi vào source code.
 
 - [Định hướng sản phẩm](docs/PRODUCT.md)
 - [Nền tảng kỹ thuật](docs/TECHNICAL_FOUNDATION.md)
+- [Bản đồ code](docs/CODEBASE.md)
+- [Quy tắc giao diện](docs/UI_GUIDELINES.md)
 - [Quy tắc dự án](AGENTS.md)
 
 ## Cấu trúc
@@ -47,15 +49,25 @@ Email nhận thông báo không được ghi vào source code.
 |-- README.md
 |-- netlify.toml
 |-- docs/
+|   |-- CODEBASE.md
 |   |-- PRODUCT.md
-|   `-- TECHNICAL_FOUNDATION.md
+|   |-- TECHNICAL_FOUNDATION.md
+|   `-- UI_GUIDELINES.md
 `-- website/
     |-- index.html
     `-- assets/
         |-- css/
-        |   `-- main.css
+        |   |-- tokens.css
+        |   |-- foundation.css
+        |   |-- hero.css
+        |   |-- solutions.css
+        |   |-- sections.css
+        |   `-- responsive.css
+        |-- img/
+        |   `-- favicon.svg
         `-- js/
-            `-- main.js
+            |-- main.js
+            `-- solution-carousel.js
 ```
 
 - `docs/`: quyết định sản phẩm và kỹ thuật.
