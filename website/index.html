@@ -470,6 +470,7 @@
             name="consultation"
             method="POST"
             data-netlify="true"
+            data-netlify-recaptcha="true"
             netlify-honeypot="bot-field"
             novalidate
           >
@@ -493,9 +494,12 @@
                 name="contact"
                 type="text"
                 autocomplete="email"
+                maxlength="254"
+                placeholder="name@example.com hoặc 0912345678"
+                aria-describedby="contact-error"
                 required
               >
-              <span class="field-error" data-error-for="contact-method"></span>
+              <span id="contact-error" class="field-error" data-error-for="contact-method"></span>
             </div>
 
             <div class="form-row">
@@ -514,6 +518,18 @@
             <div class="form-row">
               <label for="message">Mô tả ngắn vấn đề</label>
               <textarea id="message" name="message" rows="4"></textarea>
+            </div>
+
+            <div class="captcha-row">
+              <div
+                class="captcha-field"
+                role="group"
+                aria-label="Xác minh chống spam"
+                aria-describedby="captcha-error"
+                data-netlify-recaptcha="true"
+                aria-invalid="false"
+              ></div>
+              <span id="captcha-error" class="field-error" data-error-for="captcha"></span>
             </div>
 
             <button class="button submit-button" type="submit">Gửi yêu cầu tư vấn</button>

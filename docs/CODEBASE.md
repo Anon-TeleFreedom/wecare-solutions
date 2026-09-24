@@ -39,7 +39,8 @@ Chỉ quản lý các hành vi cấp trang:
 - Đóng mở menu mobile.
 - Hiện nút cuộn lên đầu trang.
 - Chọn solution quan tâm từ liên kết trong card.
-- Validate và gửi form tư vấn tới Netlify Forms.
+- Validate email hoặc số điện thoại, kiểm tra CAPTCHA và gửi form tới Netlify
+  Forms.
 
 ### `motion.js`
 

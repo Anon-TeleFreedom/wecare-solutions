@@ -2,6 +2,7 @@ const menuButton = document.querySelector(".menu-button");
 const navigation = document.querySelector(".site-navigation");
 const navigationLinks = document.querySelectorAll(".site-navigation a");
 const consultationForm = document.querySelector("#consultation-form");
+const contactField = document.querySelector("#contact-method");
 const interestField = document.querySelector("#interest");
 const interestLinks = document.querySelectorAll("[data-interest]");
 const themeToggle = document.querySelector(".theme-toggle");
@@ -84,11 +85,54 @@ function validateRequiredField(field, message) {
   return isValid;
 }
 
+function isValidEmail(value) {
+  return (
+    value.length <= 254 &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)
+  );
+}
+
+function isValidPhone(value) {
+  const normalizedPhone = value.replace(/[\s().-]/g, "");
+  return /^\+?\d{9,15}$/.test(normalizedPhone);
+}
+
+function validateContactField(field) {
+  const value = field.value.trim();
+  const isValid = isValidEmail(value) || isValidPhone(value);
+  const message = isValid
+    ? ""
+    : "Nhập email hợp lệ hoặc số điện thoại từ 9 đến 15 chữ số.";
+  showFieldError(field, message);
+  return isValid;
+}
+
+function validateCaptcha(form) {
+  const captchaResponse = form.querySelector(
+    `[name="g-recaptcha-response"]`,
+  );
+  const captchaContainer = form.querySelector(".captcha-field");
+  const errorElement = form.querySelector(`[data-error-for="captcha"]`);
+  const isValid = Boolean(captchaResponse?.value.trim());
+
+  captchaContainer.setAttribute("aria-invalid", String(!isValid));
+  errorElement.textContent = isValid
+    ? ""
+    : "Vui lòng xác nhận bạn không phải là robot.";
+  return isValid;
+}
+
+contactField.addEventListener("blur", () => validateContactField(contactField));
+contactField.addEventListener("input", () => {
+  if (contactField.getAttribute("aria-invalid") === "true") {
+    validateContactField(contactField);
+  }
+});
+
 consultationForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const nameField = consultationForm.elements.name;
-  const contactField = consultationForm.elements.contact;
   const statusElement = document.querySelector("#form-status");
   const submitButton = consultationForm.querySelector('[type="submit"]');
 
@@ -96,18 +140,26 @@ consultationForm.addEventListener("submit", async (event) => {
     nameField,
     "Vui lòng nhập tên của bạn.",
   );
-  const isContactValid = validateRequiredField(
-    contactField,
-    "Vui lòng nhập email hoặc số điện thoại.",
-  );
+  const isContactValid = validateContactField(contactField);
   const isInterestValid = validateRequiredField(
     interestField,
-    "Vui lòng chọn giải pháp bạn quan tâm.",
+    "Vui lòng chọn sản phẩm hoặc dịch vụ bạn quan tâm.",
   );
+  const isCaptchaValid = validateCaptcha(consultationForm);
 
-  if (!isNameValid || !isContactValid || !isInterestValid) {
-    statusElement.textContent = "Vui lòng kiểm tra các trường bắt buộc.";
-    consultationForm.querySelector('[aria-invalid="true"]').focus();
+  if (!isNameValid || !isContactValid || !isInterestValid || !isCaptchaValid) {
+    statusElement.textContent = "Vui lòng kiểm tra lại thông tin đã nhập.";
+    const firstInvalidField = consultationForm.querySelector(
+      `input[aria-invalid="true"], select[aria-invalid="true"]`,
+    );
+
+    if (firstInvalidField) {
+      firstInvalidField.focus();
+    } else {
+      consultationForm
+        .querySelector(".captcha-field")
+        .scrollIntoView({ behavior: "smooth", block: "center" });
+    }
     return;
   }
 
@@ -122,11 +174,12 @@ consultationForm.addEventListener("submit", async (event) => {
       body: new URLSearchParams(new FormData(consultationForm)).toString(),
     });
 
-    if (!response.ok) {
+    if (!response.ok || response.redirected) {
       throw new Error(`Form submission failed with status ${response.status}`);
     }
 
     consultationForm.reset();
+    window.grecaptcha?.reset();
     statusElement.textContent = "Đã gửi yêu cầu. Chúng tôi sẽ liên hệ lại sớm.";
   } catch (error) {
     console.error("Consultation form submission failed.", error);

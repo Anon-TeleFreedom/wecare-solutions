@@ -269,6 +269,21 @@
   font-size: 11px;
 }
 
+.captcha-row {
+  margin: 2px 0 20px;
+}
+
+.captcha-field {
+  min-height: 78px;
+  overflow: hidden;
+}
+
+.captcha-field[aria-invalid="true"] {
+  border-radius: 4px;
+  outline: 2px solid var(--danger);
+  outline-offset: 3px;
+}
+
 .submit-button {
   width: 100%;
 }

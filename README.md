@@ -27,9 +27,11 @@ Sau lần deploy đầu tiên:
 
 1. Vào `Forms` và bật form detection nếu Netlify chưa bật sẵn.
 2. Xác nhận form `consultation` đã được nhận diện.
-3. Vào `Forms > Submission notifications`.
-4. Chọn `Add notification > Email notification`.
-5. Nhập email nhận thông báo trong Netlify Dashboard.
+3. Mở form và xác nhận `Extra spam prevention` hiển thị honeypot cùng reCAPTCHA.
+4. Kiểm tra reCAPTCHA trên domain Netlify, không kiểm tra bằng file local.
+5. Vào `Forms > Submission notifications`.
+6. Chọn `Add notification > Email notification`.
+7. Nhập email nhận thông báo trong Netlify Dashboard.
 
 Email nhận thông báo không được ghi vào source code.
 
