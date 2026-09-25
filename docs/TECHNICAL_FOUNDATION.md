@@ -2,7 +2,7 @@
 
 ## 1. Phạm vi repository
 
-Repository hiện tại là `wecare-datv`, chứa website catalog công khai của
+Repository hiện tại là `webcare-site`, chứa website catalog công khai của
 Wecare DatV.
 
 Mục tiêu:
@@ -20,9 +20,19 @@ Không thuộc phạm vi repository:
 - Customer portal.
 - Thanh toán trực tuyến.
 - Dashboard vận hành.
+- License key, activation logic và dashboard quản trị license.
 
 Mỗi solution hoặc tool có repository và vòng đời riêng. Website chỉ chứa nội
 dung catalog, thông tin mua hàng và kênh liên hệ.
+
+Hệ thống quản lý license nằm trong repository private `webcare-license`. Hệ
+thống này sở hữu dữ liệu khách hàng, license key, trạng thái kích hoạt, thời hạn,
+thu hồi và audit. Dashboard, database, secret và source code của hệ thống không
+được đưa vào website public.
+
+Khi solution cần xác minh license online, solution chỉ gọi API activation tối
+thiểu của `webcare-license`. Website catalog không gọi API này và không chứa
+key hoặc logic kiểm tra license.
 
 ## 2. Nền tảng giao diện
 

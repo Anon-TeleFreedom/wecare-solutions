@@ -5,7 +5,7 @@
 Wecare DatV là hệ sinh thái solution kỹ thuật và dịch vụ trợ giảng DevOps
 được cung cấp theo nhu cầu thực tế của khách hàng.
 
-`wecare-datv` là website catalog và kênh nhận yêu cầu tư vấn. Website không phải
+`webcare-site` là website catalog và kênh nhận yêu cầu tư vấn. Website không phải
 backend dùng chung cho các sản phẩm.
 
 Mỗi solution:
@@ -171,15 +171,30 @@ không cần một repository sản phẩm riêng.
 ## 4. Ranh giới repository
 
 ```text
-wecare-datv
+webcare-site
 webcare-incident
 webcare-app-notify
 webcare-pages
 webcare-gitops
+webcare-license
 ```
 
-Không gom source code của các solution vào `wecare-datv` hoặc vào một monorepo
-chung chỉ để tiện phát triển ban đầu.
+`webcare-site` là catalog public. Không gom source code của các solution vào
+repository này hoặc vào một monorepo chung chỉ để tiện phát triển ban đầu.
+
+`webcare-license` là repository private và là hệ thống vận hành nội bộ, không
+phải solution được quảng bá hoặc bàn giao source cho khách hàng. Hệ thống này
+quản lý khách hàng, sản phẩm, license key, kích hoạt, thời hạn, thu hồi và lịch
+sử kiểm tra license.
+
+Dashboard quản trị, database, secret và logic cấp license của
+`webcare-license` phải giữ private. Nếu tool của khách cần kiểm tra license
+online, chỉ API activation tối thiểu được công khai qua mạng. API phải có xác
+thực phù hợp, rate limit và không làm lộ dữ liệu quản trị nội bộ.
+
+`webcare-site` không chứa license key, giao diện quản trị license hoặc logic
+kích hoạt. Các solution chỉ tích hợp với API xác minh license và không truy cập
+trực tiếp dashboard hoặc database của `webcare-license`.
 
 ## 5. Khách hàng mục tiêu
 
@@ -245,6 +260,7 @@ Không phát triển đồng thời cả bốn backend ở giai đoạn đầu.
 - [x] Chốt bốn solution và một dịch vụ mentor trong catalog.
 - [x] Công khai mức giá WebCare Mentor.
 - [x] Tách ranh giới repository.
+- [x] Tách `webcare-license` thành repository private để quản lý license nội bộ.
 - [x] Chọn Versus Incident làm tham chiếu cho luồng incident.
 - [ ] Chốt MVP của WebCare Incident.
 - [ ] Chọn stack kỹ thuật và event schema.

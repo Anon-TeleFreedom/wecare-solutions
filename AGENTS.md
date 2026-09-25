@@ -1,248 +1,131 @@
-# Project instructions
+# WebCare Site instructions
 
-## Purpose
+## Project context
 
-This repository contains the public Wecare DatV catalog website. Keep the
-Wecare DatV brand distinct from product names such as WebCare Incident.
-It presents independently developed technical solutions and DevOps tutoring for
-engineering teams, businesses, content teams, and individual learners.
+This repository contains the public Wecare DatV catalog website. It presents
+independently developed technical solutions and the WebCare Mentor service.
 
-The current objective is to help visitors find a suitable solution or tutoring
-service and contact the seller. After a manual bank transfer, a solution customer
-receives source code and an integration guide, while a tutoring customer
-receives the agreed meeting.
+The catalog currently covers:
 
-This repository is not a SaaS application, a monitoring platform, a customer
-dashboard, or the source repository for any listed solution.
+- WebCare Incident
+- WebCare App Notify
+- WebCare Pages
+- WebCare GitOps
+- WebCare Mentor
 
-## Read order
+This repository is not a SaaS backend, monitoring platform, customer dashboard,
+payment system, or source repository for any listed solution. Each solution has
+its own repository, source code, guide, and lifecycle.
 
-Read only what is needed for the task:
+The main conversion is a consultation request. Payment is arranged manually by
+bank transfer after the scope and price are confirmed.
 
-1. Read this file.
-2. Read `docs/CODEBASE.md` when onboarding or when a task spans HTML, CSS, and
-   JavaScript.
-3. Read `docs/UI_GUIDELINES.md` for any visual, copy, layout, responsive, theme,
-   interaction, or accessibility change.
-4. Read `docs/TECHNICAL_FOUNDATION.md` only when architecture, tools,
-   deployment, security, backup, or operations are relevant.
-5. Read `docs/PRODUCT.md` only when product scope, pricing, customers, or
-   business operations are relevant.
-6. Read only implementation files directly related to the requested change.
+A separate private repository, `webcare-license`, owns internal customer,
+license-key, activation, expiration, revocation, and audit management. Its
+administration interface, database, secrets, and source code are private. This
+public catalog must not contain license keys or license-management logic.
 
-Do not load the entire repository when targeted searches and focused reads are enough.
+## Technical baseline
 
-## Repository map
+- Use semantic HTML, focused CSS files, and plain JavaScript.
+- Keep the website static and deploy it to Netlify with no build step.
+- Do not add a framework or dependency unless it solves a measured need.
+- Default content is Vietnamese, with English and Simplified Chinese support.
+- Keep product source code, customer systems, credentials, secrets, and private
+  operational data out of this repository.
 
-This is a static single-page website. Read `docs/CODEBASE.md` for the file-by-file
-ownership map and CSS load order before changes spanning HTML, CSS, and
+## Read only what the task needs
+
+Do not read the whole repository or every document before each task.
+
+- Read `docs/CODEBASE.md` for changes spanning HTML, CSS, and JavaScript, or to
+  find the file that owns a component.
+- Read `docs/UI_GUIDELINES.md` for visual, copy, layout, responsive, theme,
+  interaction, motion, or accessibility changes.
+- Read `docs/PRODUCT.md` for product scope, solution relationships, pricing,
+  customers, or business operations.
+- Read `docs/TECHNICAL_FOUNDATION.md` for architecture, deployment, security,
+  forms, storage, backup, or operations.
+- Read only the implementation files directly related to the requested change.
+
+Use targeted `rg` searches and focused line ranges before opening broad files.
+
+## Code ownership
+
+- `website/index.html`: semantic content, SEO metadata, entry points, and the
+  Netlify consultation form.
+- `website/assets/css/`: tokens and component-specific styles. Preserve the CSS
+  load order documented in `docs/CODEBASE.md`.
+- `website/assets/js/main.js`: theme, mobile menu, page controls, and form.
+- `website/assets/js/translations.js`: VI, EN, and zh-CN strings and language
+  selection.
+- `website/assets/js/motion.js`: entrance, reveal, ambient effects, preview
+  animation, and scroll progress.
+- `website/assets/js/solution-carousel.js`: solution carousel behavior.
+
+Keep content in HTML, each interaction in its owning JavaScript file, and each
+component's styles in its owning CSS file. Do not render primary content with
 JavaScript.
 
-- `website/index.html` owns semantic page content, SEO metadata, CSS/JavaScript
-  entry points, and the Netlify consultation form.
-- `website/assets/css/` contains design tokens and focused stylesheets; retain
-  their load order from `docs/CODEBASE.md`.
-- `website/assets/js/main.js` owns page controls, theme, and consultation form
-  behavior.
-- `website/assets/js/translations.js` owns Vietnamese, English, and Simplified
-  Chinese UI strings, language selection, and the saved language preference.
-- `website/assets/js/motion.js` owns entrance and scroll reveal, reduced-motion
-  behavior, ambient preview effects, the preview catalog count, and scroll
-  progress.
-- `website/assets/js/solution-carousel.js` owns the looping solution carousel
-  and its current-position indicator. Autoplay timing and easing are configured
-  there; keep animation frame work limited to active transitions.
-- `website/assets/img/` contains small interface assets such as the favicon.
-- `docs/` contains the code map, UI rules, product scope, and technical
-  foundation. Update the relevant source document when a lasting decision
-  changes.
+## Required behavior
 
-Keep the page content in HTML. Keep each interaction in its owning JavaScript
-file and each component's rules in its owning CSS file. Do not add build tools
-or dependencies for behavior supported by the browser.
+- Add a `data-i18n` key to new user-facing HTML copy and add matching EN and
+  zh-CN strings to `translations.js`.
+- Route dynamic messages through `getTranslation(key)`.
+- Keep the solution catalog as a horizontal scroll-snap carousel unless the
+  user explicitly requests another presentation.
+- Keep carousel logic out of `main.js`.
+- Respect `prefers-reduced-motion` and pause nonessential animation when hidden
+  or offscreen.
+- Preserve visible keyboard focus, sufficient contrast, touch targets, and
+  support for screens from 360px.
+- Keep the consultation CAPTCHA hidden until valid required fields are first
+  submitted, then require verification and a second submission.
+- Do not add icons, decorative symbols, unverified claims, fake customers,
+  testimonials, partners, or unsupported integrations.
+- Do not store raster marketing images in this repository. Use only an ImageKit
+  public URL endpoint when real image content is introduced.
 
-The page defaults to Vietnamese. Mark new user-facing HTML copy with a
-`data-i18n` key and add matching English and Simplified Chinese strings to
-`translations.js`. Route dynamic form and control messages through that file.
+## Working rules
 
-For motion, read `docs/UI_GUIDELINES.md` and `docs/CODEBASE.md`. Keep chart and
-page effects in `motion.js`/`motion.css`; pause nonessential work when hidden or
-offscreen, respect `prefers-reduced-motion`, and avoid polling loops or external
-animation dependencies.
+- Make the smallest coherent change that satisfies the request.
+- Preserve unrelated and existing user changes.
+- Use clear domain names, focused functions, explicit validation, and explicit
+  error handling.
+- Do not add speculative abstractions or duplicate logic.
+- Never commit secrets, credentials, personal information, production
+  environment files, or customer data.
+- Do not create commits, push, change remotes, or create branches unless the
+  user explicitly requests that exact action.
+- Update the relevant document when a lasting product, architecture,
+  operational, or user-behavior decision changes.
+- Use normal punctuation. Do not use the em dash character, emoji, or decorative
+  icons in documents, code, comments, commit messages, or user-facing output.
 
-## Current constraints
+Safe local inspection and validation do not require confirmation. Ask the user
+only when a missing decision would materially change product scope, external
+state, security, cost, or data handling.
 
-- Build a responsive public marketing website first.
-- Deploy the static website on Netlify with no build step.
-- Keep Docker Compose as an optional self-host path only when it is requested.
-- Keep the first release small enough for one person to operate.
-- Use plain HTML, CSS, and JavaScript until a framework solves a measured need.
-- The primary conversion is a consultation request through the contact form.
-- The consultation CAPTCHA starts hidden. After the visitor submits valid name, contact, and interest fields, reveal the Netlify CAPTCHA and ask them to submit again after verification.
-- Each solution or tool must live in its own separate project.
-- Do not place solution source code in this catalog repository.
-- Payment is arranged manually by bank transfer after consultation.
-- Do not introduce Kubernetes, microservices, queues, or distributed systems.
-- Do not build a custom dashboard, authentication system, billing system, or
-  mobile application unless the product scope explicitly changes.
-- Keep internal operations and customer infrastructure out of this repository.
+## Validation
 
-## Engineering principles
+Local preview:
 
-- Choose the smallest design that completely solves the current requirement.
-- Keep code simple, explicit, and easy to delete or replace.
-- Use clear domain names. Avoid abbreviations and vague names such as
-  `data`, `item`, `manager`, `helper`, or `utils` when a precise name is
-  available.
-- Keep functions focused on one responsibility.
-- Separate configuration, domain logic, integration code, and persistence.
-- Prefer composition over inheritance.
-- Avoid speculative abstractions and premature generalization.
-- Remove dead code instead of commenting it out.
-- Do not duplicate logic. Extract shared code only after a real duplication is
-  understood.
-- Make error handling explicit. Never silently ignore failures.
-- Validate data at system boundaries.
-- Store configuration in environment variables and provide safe defaults only
-  when they are truly safe.
-- Never commit secrets, credentials, tokens, private keys, customer data, or
-  production environment files.
-- Pin container image versions. Do not use `latest` in production.
-- Add health checks, restart policies, resource awareness, and persistent
-  volumes to production services.
-- Keep public network exposure minimal. Only the reverse proxy should publish
-  HTTP and HTTPS ports unless a documented exception is required.
-- Make backup and restore procedures part of the implementation, not an
-  afterthought.
-
-## Code quality
-
-When custom code is added:
-
-- Use the formatter, linter, type checker, and test runner selected by the
-  repository.
-- Treat lint and type errors as failures.
-- Prefer strongly typed interfaces and explicit return values at boundaries.
-- Write tests for business rules, failure paths, and bug fixes.
-- Avoid tests that only repeat implementation details.
-- Keep comments short and explain why, not what.
-- Keep modules cohesive and dependencies directional.
-- Do not catch broad exceptions unless they are logged and converted into a
-  meaningful boundary error.
-
-Do not invent build or test commands. Add exact commands to this file when the
-first implementation stack is introduced.
-
-Current local preview command:
-
-```text
+```bash
 python3 -m http.server 8080 --directory website
 ```
 
-Current validation has no dependency installation. Check HTML, CSS, JavaScript,
-responsive layout, keyboard navigation, and browser console errors.
+JavaScript syntax:
 
-## UI quality
+```bash
+node --check website/assets/js/main.js
+node --check website/assets/js/translations.js
+node --check website/assets/js/solution-carousel.js
+node --check website/assets/js/motion.js
+```
 
-- Follow the code ownership map in `docs/CODEBASE.md`.
-- Keep CSS split by responsibility. Do not merge the CSS files into one large
-  file.
-- Preserve the documented CSS load order and place new rules in the file that
-  owns the component.
-- Follow `docs/UI_GUIDELINES.md` for every user-facing UI change.
-- Keep the solution catalog as a horizontal scroll-snap carousel unless the user
-  explicitly requests another presentation.
-- Keep copy concise. Each section must have one clear purpose.
-- Use a consistent type scale, spacing scale, color tokens, and layout grid.
-- Support light and dark themes through shared CSS variables.
-- Do not duplicate component styles between themes.
-- Check contrast, keyboard focus, touch targets, and readable line lengths.
-- Review the rendered UI in both themes at desktop and mobile sizes.
-- Do not add icons or visual decoration.
-- Prefer fewer strong elements over many competing elements.
-- Prefer HTML and CSS for simple interface illustrations.
-- Use optimized SVG only when a vector asset is genuinely needed.
-- Do not store raster marketing images in this repository. Serve them through
-  ImageKit when image content is introduced.
-- Do not embed large images as base64 or data URLs.
-- Only the ImageKit URL endpoint may be used in frontend code.
-- Never expose ImageKit private keys, upload credentials, signatures, tokens,
-  or admin configuration in this public repository.
-- Add responsive `srcset`, explicit dimensions, lazy loading, and async decoding
-  when an ImageKit asset is introduced.
+For user-facing changes, check the relevant desktop and mobile layouts, light
+and dark themes, keyboard navigation, reduced motion, and browser console. Check
+the form and carousel when the change can affect them.
 
-## Change workflow
-
-1. Inspect the smallest relevant set of files.
-2. State any assumption that materially affects the solution.
-3. Implement the smallest coherent change.
-4. Run the relevant validation.
-5. Review the diff for unnecessary complexity, secrets, and unrelated edits.
-6. Update documentation when architecture, operations, configuration, or user
-   behavior changes.
-
-Do not modify unrelated files. Preserve user changes already present in the
-workspace.
-
-## Git workflow
-
-- Develop and validate changes locally by default.
-- Do not create commits unless the user explicitly requests a commit.
-- Do not push, rename repositories, change remotes, or create branches unless
-  the user explicitly requests that exact action in the current conversation.
-- Never assume that finishing a feature includes publishing it.
-- This repository is public. Before any requested push, scan the complete diff
-  for secrets, credentials, personal information, customer data, environment
-  files, generated files, and unintended local paths.
-- Show the user what will be published before pushing when the scope is not
-  already obvious.
-
-## Docker Compose rules
-
-- Use `compose.yaml` as the main Compose file.
-- Provide `.env.example` with placeholders, never real secrets.
-- Use named volumes for persistent application data.
-- Put internal services on private Docker networks.
-- Publish only required ports.
-- Use explicit image versions.
-- Document every environment variable.
-- Verify configuration with `docker compose config`.
-- Verify service health after deployment.
-- Never run automatic unattended major-version upgrades.
-- Back up persistent data before upgrades and test restoration periodically.
-
-These rules apply when deployment files are added. Do not add internal tools,
-solution code, customer systems, or payment processing to the website Compose
-project.
-
-## Documentation rules
-
-- Keep documentation concise and factual.
-- Maintain one source of truth for each decision.
-- Link to an existing document instead of copying the same explanation.
-- Record architecture decisions in `docs/TECHNICAL_FOUNDATION.md`.
-- Record product and service decisions in `docs/PRODUCT.md`.
-- Use normal punctuation.
-- Do not use the em dash character.
-- Do not use emoji or decorative icons.
-
-## Token and context efficiency
-
-- Search with `rg` before opening broad files.
-- Read focused line ranges when only one section is relevant.
-- Do not repeatedly read unchanged files.
-- Avoid restating information already present in project documents.
-- Keep progress updates and final summaries concise.
-- Prefer a small diff over generating replacement files.
-- Do not create duplicate plans, summaries, or architecture documents.
-
-## Definition of done
-
-A change is complete only when:
-
-- It meets the requested scope.
-- Relevant validation passes.
-- Failure behavior is clear.
-- No secret or customer data was added.
-- Deployment and documentation remain accurate.
-- The final response identifies changed files and any remaining manual step.
+Before finishing, review the diff for unrelated edits, unnecessary complexity,
+secrets, personal information, and documentation drift.
