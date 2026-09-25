@@ -3,11 +3,11 @@
 ## 1. Brand and purpose
 
 - Present Wecare DatV as a solution ecosystem, not a single-product website.
-- Keep five catalog items visible: WebCare Incident, WebCare App Notify, WebCare
-  Pages, WebCare GitOps and WebCare Mentor.
+- Keep five catalog items visible: Wecare Incident, Wecare App Notify, Wecare
+  Pages, Wecare GitOps and Wecare Mentor.
 - Support Vietnamese, English, and Simplified Chinese (`zh-CN`), with Vietnamese
   as the default language.
-- Keep product names such as WebCare Incident unchanged across languages.
+- Keep product names such as Wecare Incident unchanged across languages.
 - Write and proofread copy as a native speaker would phrase it in each language;
   adapt sentence structure and length instead of translating word for word.
 - Keep standard technical terms in English when local developers commonly use

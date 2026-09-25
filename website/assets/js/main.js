@@ -33,7 +33,7 @@ themeToggle.addEventListener("click", () => {
     document.documentElement.dataset.theme === "dark" ? "light" : "dark";
   setTheme(nextTheme);
   try {
-    localStorage.setItem("webcare-theme", nextTheme);
+    localStorage.setItem("wecare-theme", nextTheme);
   } catch {
     // Theme still applies when browser storage is unavailable.
   }

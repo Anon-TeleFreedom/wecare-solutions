@@ -5,7 +5,7 @@
 Wecare DatV là hệ sinh thái solution kỹ thuật và dịch vụ trợ giảng DevOps
 được cung cấp theo nhu cầu thực tế của khách hàng.
 
-`webcare-site` là website catalog và kênh nhận yêu cầu tư vấn. Website không phải
+`wecare-site` là website catalog và kênh nhận yêu cầu tư vấn. Website không phải
 backend dùng chung cho các sản phẩm.
 
 Mỗi solution:
@@ -17,9 +17,9 @@ Mỗi solution:
 
 ## 2. Danh mục solution
 
-### WebCare Incident
+### Wecare Incident
 
-Repository dự kiến: `webcare-incident`.
+Repository dự kiến: `wecare-incident`.
 
 Lớp API trung gian nhận incident đã được tạo bởi các hệ thống monitoring, chuẩn
 hóa dữ liệu và điều phối tới đúng người hoặc kênh xử lý.
@@ -31,7 +31,7 @@ Phạm vi dự kiến:
 - Chuẩn hóa severity, label, service, team và trạng thái.
 - Gom nhóm, chống trùng và quản lý vòng đời incident.
 - ACK, silence, routing và escalation.
-- Gửi tới WebCare App Notify, email, Telegram hoặc webhook khác.
+- Gửi tới Wecare App Notify, email, Telegram hoặc webhook khác.
 - Lưu lịch sử thay đổi để truy vết.
 - Self-hosted bằng Docker Compose.
 
@@ -40,17 +40,17 @@ không scrape, lưu hay truy vấn metrics và không thay thế Prometheus, Inf
 VictoriaMetrics hoặc Alertmanager.
 
 Versus Incident là sản phẩm tham chiếu về webhook intake, template, notification,
-ACK và escalation. WebCare Incident không sao chép source code hoặc tuyên bố có
+ACK và escalation. Wecare Incident không sao chép source code hoặc tuyên bố có
 quan hệ hợp tác với Versus Incident.
 
 MVP không gồm AI agent đọc log, phát hiện anomaly hoặc tự tạo alert rule.
 
-### WebCare App Notify
+### Wecare App Notify
 
-Repository dự kiến: `webcare-app-notify`.
+Repository dự kiến: `wecare-app-notify`.
 
 Ứng dụng nhận notification và phối hợp xử lý theo từng incident. App nhận dữ liệu
-đã chuẩn hóa từ WebCare Incident.
+đã chuẩn hóa từ Wecare Incident.
 
 Phạm vi dự kiến:
 
@@ -65,9 +65,9 @@ Phạm vi dự kiến:
 Phiên bản đầu không phải ứng dụng chat tổng quát và không cố thay thế Slack hoặc
 Microsoft Teams.
 
-### WebCare Pages
+### Wecare Pages
 
-Repository dự kiến: `webcare-pages`.
+Repository dự kiến: `wecare-pages`.
 
 Công cụ quản lý nội dung và tự động đăng bài lên nhiều nền tảng mạng xã hội từ
 một quy trình chung.
@@ -85,9 +85,9 @@ Phạm vi dự kiến:
 Mỗi nền tảng có API, quyền truy cập và chính sách riêng. Chỉ công bố tích hợp khi
 đã kiểm tra API và điều khoản của nền tảng đó.
 
-### WebCare GitOps
+### Wecare GitOps
 
-Repository dự kiến: `webcare-gitops`.
+Repository dự kiến: `wecare-gitops`.
 
 Bộ công cụ và template giúp khách hàng thiết lập quy trình GitOps mà không phải
 tự ghép toàn bộ thành phần từ đầu.
@@ -122,7 +122,7 @@ Phạm vi sản phẩm dự kiến:
 Không khóa sản phẩm vào một Git provider, registry, scanner hoặc cloud duy nhất.
 Bộ tích hợp cụ thể được chốt theo nhu cầu khách hàng.
 
-### WebCare Mentor
+### Wecare Mentor
 
 Dịch vụ trợ giảng DevOps theo giờ, không phải một tool hoặc backend riêng. Dịch
 vụ dành cho người học, developer chuyển hướng sang DevOps và đội kỹ thuật cần
@@ -146,55 +146,55 @@ Phạm vi có thể trao đổi:
 Dịch vụ không cam kết việc làm, chứng chỉ hoặc kết quả học tập. Không yêu cầu
 credential production của khách hàng trong một buổi trợ giảng thông thường.
 
-## 3. Quan hệ giữa WebCare Incident và App Notify
+## 3. Quan hệ giữa Wecare Incident và App Notify
 
 ```text
 Alertmanager / vmalert / HTTP notification
                     |
                     v
-            WebCare Incident
+            Wecare Incident
                     |
           API, webhook, event
                     |
                     v
-          WebCare App Notify
+          Wecare App Notify
 ```
 
-WebCare Incident sở hữu logic tiếp nhận, chuẩn hóa, chống trùng, routing và vòng
-đời incident. WebCare App Notify tập trung vào trải nghiệm nhận thông báo và phối
-hợp xử lý, không triển khai lại logic của WebCare Incident.
+Wecare Incident sở hữu logic tiếp nhận, chuẩn hóa, chống trùng, routing và vòng
+đời incident. Wecare App Notify tập trung vào trải nghiệm nhận thông báo và phối
+hợp xử lý, không triển khai lại logic của Wecare Incident.
 
-WebCare Pages và WebCare GitOps là hai sản phẩm độc lập, không phụ thuộc vào cặp
-sản phẩm incident và notify. WebCare Mentor là dịch vụ trợ giảng độc lập,
+Wecare Pages và Wecare GitOps là hai sản phẩm độc lập, không phụ thuộc vào cặp
+sản phẩm incident và notify. Wecare Mentor là dịch vụ trợ giảng độc lập,
 không cần một repository sản phẩm riêng.
 
 ## 4. Ranh giới repository
 
 ```text
-webcare-site
-webcare-incident
-webcare-app-notify
-webcare-pages
-webcare-gitops
-webcare-license
+wecare-site
+wecare-incident
+wecare-app-notify
+wecare-pages
+wecare-gitops
+wecare-license
 ```
 
-`webcare-site` là catalog public. Không gom source code của các solution vào
+`wecare-site` là catalog public. Không gom source code của các solution vào
 repository này hoặc vào một monorepo chung chỉ để tiện phát triển ban đầu.
 
-`webcare-license` là repository private và là hệ thống vận hành nội bộ, không
+`wecare-license` là repository private và là hệ thống vận hành nội bộ, không
 phải solution được quảng bá hoặc bàn giao source cho khách hàng. Hệ thống này
 quản lý khách hàng, sản phẩm, license key, kích hoạt, thời hạn, thu hồi và lịch
 sử kiểm tra license.
 
 Dashboard quản trị, database, secret và logic cấp license của
-`webcare-license` phải giữ private. Nếu tool của khách cần kiểm tra license
+`wecare-license` phải giữ private. Nếu tool của khách cần kiểm tra license
 online, chỉ API activation tối thiểu được công khai qua mạng. API phải có xác
 thực phù hợp, rate limit và không làm lộ dữ liệu quản trị nội bộ.
 
-`webcare-site` không chứa license key, giao diện quản trị license hoặc logic
+`wecare-site` không chứa license key, giao diện quản trị license hoặc logic
 kích hoạt. Các solution chỉ tích hợp với API xác minh license và không truy cập
-trực tiếp dashboard hoặc database của `webcare-license`.
+trực tiếp dashboard hoặc database của `wecare-license`.
 
 ## 5. Khách hàng mục tiêu
 
@@ -237,12 +237,12 @@ thông tin ngân hàng, credentials hoặc secret vào repository.
 
 ## 8. Thứ tự phát triển
 
-1. Mở lịch WebCare Mentor với phạm vi và giá công khai.
-2. Chốt MVP và xây WebCare Incident trước.
-3. Ổn định API sự kiện giữa WebCare Incident và WebCare App Notify.
-4. Xây WebCare App Notify với phạm vi notification và xử lý incident.
-5. Xác thực nhu cầu và API nền tảng trước khi xây WebCare Pages.
-6. Chốt bộ công cụ mặc định trước khi xây WebCare GitOps.
+1. Mở lịch Wecare Mentor với phạm vi và giá công khai.
+2. Chốt MVP và xây Wecare Incident trước.
+3. Ổn định API sự kiện giữa Wecare Incident và Wecare App Notify.
+4. Xây Wecare App Notify với phạm vi notification và xử lý incident.
+5. Xác thực nhu cầu và API nền tảng trước khi xây Wecare Pages.
+6. Chốt bộ công cụ mặc định trước khi xây Wecare GitOps.
 
 Không phát triển đồng thời cả bốn backend ở giai đoạn đầu.
 
@@ -258,12 +258,12 @@ Không phát triển đồng thời cả bốn backend ở giai đoạn đầu.
 ## 10. Việc cần làm tiếp theo
 
 - [x] Chốt bốn solution và một dịch vụ mentor trong catalog.
-- [x] Công khai mức giá WebCare Mentor.
+- [x] Công khai mức giá Wecare Mentor.
 - [x] Tách ranh giới repository.
-- [x] Tách `webcare-license` thành repository private để quản lý license nội bộ.
+- [x] Tách `wecare-license` thành repository private để quản lý license nội bộ.
 - [x] Chọn Versus Incident làm tham chiếu cho luồng incident.
-- [ ] Chốt MVP của WebCare Incident.
+- [ ] Chốt MVP của Wecare Incident.
 - [ ] Chọn stack kỹ thuật và event schema.
-- [ ] Tạo repository `webcare-incident`.
+- [ ] Tạo repository `wecare-incident`.
 - [ ] Thiết kế API webhook đầu tiên.
-- [ ] Xác thực nhu cầu riêng cho WebCare Pages và WebCare GitOps.
+- [ ] Xác thực nhu cầu riêng cho Wecare Pages và Wecare GitOps.

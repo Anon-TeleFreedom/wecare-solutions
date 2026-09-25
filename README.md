@@ -9,7 +9,7 @@ Mentor với giá 200.000đ cho 60 phút. Mỗi solution hoặc tool nằm trong
 project riêng và không được đưa vào repository này.
 
 License của các solution được quản lý trong repository private
-`webcare-license`. Website public này không chứa license key, dashboard quản
+`wecare-license`. Website public này không chứa license key, dashboard quản
 trị hoặc logic kích hoạt.
 
 ## Chạy giao diện

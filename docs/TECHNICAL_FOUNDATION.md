@@ -2,7 +2,7 @@
 
 ## 1. Phạm vi repository
 
-Repository hiện tại là `webcare-site`, chứa website catalog công khai của
+Repository hiện tại là `wecare-site`, chứa website catalog công khai của
 Wecare DatV.
 
 Mục tiêu:
@@ -25,13 +25,13 @@ Không thuộc phạm vi repository:
 Mỗi solution hoặc tool có repository và vòng đời riêng. Website chỉ chứa nội
 dung catalog, thông tin mua hàng và kênh liên hệ.
 
-Hệ thống quản lý license nằm trong repository private `webcare-license`. Hệ
+Hệ thống quản lý license nằm trong repository private `wecare-license`. Hệ
 thống này sở hữu dữ liệu khách hàng, license key, trạng thái kích hoạt, thời hạn,
 thu hồi và audit. Dashboard, database, secret và source code của hệ thống không
 được đưa vào website public.
 
 Khi solution cần xác minh license online, solution chỉ gọi API activation tối
-thiểu của `webcare-license`. Website catalog không gọi API này và không chứa
+thiểu của `wecare-license`. Website catalog không gọi API này và không chứa
 key hoặc logic kiểm tra license.
 
 ## 2. Nền tảng giao diện
@@ -135,12 +135,12 @@ chỉ hiển thị ảnh.
 - URL ảnh phải dùng transformation theo kích thước hiển thị.
 - Ảnh ngoài màn hình đầu dùng `loading="lazy"` và `decoding="async"`.
 - Luôn khai báo `width`, `height`, `alt` và `srcset` để tránh layout shift.
-- Chưa thêm runtime code khi chưa có asset WebCare thực tế.
+- Chưa thêm runtime code khi chưa có asset Wecare thực tế.
 
 Mẫu URL, sử dụng placeholder thay vì endpoint thật:
 
 ```text
-https://ik.imagekit.io/your_imagekit_id/tr:w-768,q-auto,f-auto/webcare/asset.webp
+https://ik.imagekit.io/your_imagekit_id/tr:w-768,q-auto,f-auto/wecare/asset.webp
 ```
 
 ## 6. Luồng chuyển đổi

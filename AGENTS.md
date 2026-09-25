@@ -1,17 +1,17 @@
-# WebCare Site instructions
+# Wecare Site instructions
 
 ## Project context
 
 This repository contains the public Wecare DatV catalog website. It presents
-independently developed technical solutions and the WebCare Mentor service.
+independently developed technical solutions and the Wecare Mentor service.
 
 The catalog currently covers:
 
-- WebCare Incident
-- WebCare App Notify
-- WebCare Pages
-- WebCare GitOps
-- WebCare Mentor
+- Wecare Incident
+- Wecare App Notify
+- Wecare Pages
+- Wecare GitOps
+- Wecare Mentor
 
 This repository is not a SaaS backend, monitoring platform, customer dashboard,
 payment system, or source repository for any listed solution. Each solution has
@@ -20,7 +20,7 @@ its own repository, source code, guide, and lifecycle.
 The main conversion is a consultation request. Payment is arranged manually by
 bank transfer after the scope and price are confirmed.
 
-A separate private repository, `webcare-license`, owns internal customer,
+A separate private repository, `wecare-license`, owns internal customer,
 license-key, activation, expiration, revocation, and audit management. Its
 administration interface, database, secrets, and source code are private. This
 public catalog must not contain license keys or license-management logic.
