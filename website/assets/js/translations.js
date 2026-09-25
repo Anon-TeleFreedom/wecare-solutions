@@ -443,7 +443,9 @@
     });
 
     languageControl.addEventListener("focusout", (event) => {
-      if (!languageControl.contains(event.relatedTarget)) closeLanguageMenu();
+      if (event.relatedTarget && !languageControl.contains(event.relatedTarget)) {
+        closeLanguageMenu();
+      }
     });
 
     document.addEventListener("pointerdown", (event) => {

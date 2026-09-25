@@ -49,7 +49,9 @@ Chỉ quản lý các hành vi cấp trang:
 - Tiếng Việt trong HTML là nội dung mặc định và fallback khi JavaScript không chạy.
 - Bản dịch tiếng Anh và Trung giản thể được gom theo key tại file này.
 - `#language-switcher` là nút mở menu ngôn ngữ tùy biến để giữ giao diện nhất quán
-  giữa trình duyệt; menu hỗ trợ bàn phím và lưu lựa chọn trong localStorage.
+  giữa trình duyệt; menu hỗ trợ bàn phím, thao tác chạm và lưu lựa chọn trong localStorage.
+  Khi trình duyệt di động không cung cấp `relatedTarget` lúc chạm, chỉ đóng menu
+  bằng lựa chọn hoặc thao tác chạm bên ngoài.
 - Khai báo `data-i18n` cho text và `data-i18n-content`, `data-i18n-aria-label`,
   `data-i18n-title`, `data-i18n-alt`, `data-i18n-placeholder` cho thuộc tính.
 - Đặt dynamic message trong dictionary và lấy bằng `getTranslation(key)`.
