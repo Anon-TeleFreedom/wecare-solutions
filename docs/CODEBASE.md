@@ -41,8 +41,7 @@ Chỉ quản lý các hành vi cấp trang:
 - Đóng mở menu mobile.
 - Hiện nút cuộn lên đầu trang.
 - Chọn solution quan tâm từ liên kết trong card.
-- Validate email hoặc số điện thoại, kiểm tra CAPTCHA và gửi form tới Netlify
-  Forms.
+- Validate email hoặc số điện thoại, hiện CAPTCHA Netlify sau lần gửi đầu tiên có đủ dữ liệu hợp lệ, rồi gửi form tới Netlify Forms sau khi CAPTCHA được xác minh.
 - Dùng bản dịch hiện tại cho theme toggle và các thông báo trạng thái form.
 
 ### `translations.js`

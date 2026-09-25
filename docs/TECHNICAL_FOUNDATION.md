@@ -58,9 +58,7 @@ Form tư vấn sử dụng Netlify Forms và được gửi bằng AJAX. Netlify
 lọc spam bằng Akismet, honeypot và reCAPTCHA 2 rồi gửi thông báo tới email được cấu hình riêng trong
 Netlify Dashboard. Email nhận thông báo không nằm trong source code.
 
-Frontend chỉ gửi form khi trường liên hệ là email hợp lệ hoặc số điện thoại có
-từ 9 đến 15 chữ số. Netlify xác minh reCAPTCHA phía server. CAPTCHA dùng tích
-hợp do Netlify cung cấp nên repository không chứa site key hoặc secret.
+Frontend kiểm tra tên, phương thức liên hệ và mục quan tâm trước. CAPTCHA Netlify chỉ hiện sau lần bấm gửi đầu tiên khi các trường này hợp lệ; khách hoàn thành CAPTCHA rồi bấm gửi lần nữa. Frontend kiểm tra email hợp lệ hoặc số điện thoại có từ 9 đến 15 chữ số. Netlify xác minh reCAPTCHA phía server. CAPTCHA dùng tích hợp do Netlify cung cấp nên repository không chứa site key hoặc secret.
 
 Thông tin tài khoản ngân hàng không được hard-code trong source public. Thông tin
 thanh toán được gửi cho khách sau khi nhu cầu, giá và phạm vi bàn giao đã được

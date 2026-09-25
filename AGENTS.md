@@ -78,6 +78,7 @@ animation dependencies.
 - Keep the first release small enough for one person to operate.
 - Use plain HTML, CSS, and JavaScript until a framework solves a measured need.
 - The primary conversion is a consultation request through the contact form.
+- The consultation CAPTCHA starts hidden. After the visitor submits valid name, contact, and interest fields, reveal the Netlify CAPTCHA and ask them to submit again after verification.
 - Each solution or tool must live in its own separate project.
 - Do not place solution source code in this catalog repository.
 - Payment is arranged manually by bank transfer after consultation.

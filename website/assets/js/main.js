@@ -155,7 +155,21 @@ consultationForm.addEventListener("submit", async (event) => {
     interestField,
     translate("form.validation.interest"),
   );
-  const isCaptchaValid = validateCaptcha(consultationForm);
+  const captchaRow = consultationForm.querySelector(".captcha-row");
+  const isCaptchaRevealed = !captchaRow.hidden;
+
+  if (isNameValid && isContactValid && isInterestValid && !isCaptchaRevealed) {
+    captchaRow.hidden = false;
+    setFormStatus(
+      statusElement,
+      translate("form.captcha.reveal"),
+      "ready",
+    );
+    captchaRow.scrollIntoView({ behavior: "smooth", block: "center" });
+    return;
+  }
+
+  const isCaptchaValid = isCaptchaRevealed && validateCaptcha(consultationForm);
 
   if (!isNameValid || !isContactValid || !isInterestValid || !isCaptchaValid) {
     setFormStatus(

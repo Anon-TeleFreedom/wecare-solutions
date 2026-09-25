@@ -325,6 +325,10 @@
   border-left-color: var(--amber);
 }
 
+.form-status[data-state="ready"] {
+  border-left-color: var(--forest);
+}
+
 .form-status[data-state="success"] {
   color: var(--link);
   background: var(--mint-light);
