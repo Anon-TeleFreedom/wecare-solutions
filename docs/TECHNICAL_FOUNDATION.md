@@ -3,7 +3,7 @@
 ## 1. Phạm vi repository
 
 Repository hiện tại là `wecare-site`, chứa website catalog công khai của
-Wecare DatV.
+Wecare Solutions.
 
 Mục tiêu:
 

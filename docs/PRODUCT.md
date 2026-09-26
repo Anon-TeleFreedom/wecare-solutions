@@ -1,9 +1,10 @@
-# Wecare DatV: Hệ sinh thái Solution
+# Wecare Solutions: Hệ sinh thái Solution
 
 ## 1. Định vị
 
-Wecare DatV là hệ sinh thái solution kỹ thuật và dịch vụ trợ giảng DevOps
-được cung cấp theo nhu cầu thực tế của khách hàng.
+Wecare Solutions là hệ sinh thái solution kỹ thuật và dịch vụ trợ giảng DevOps
+do một đội ngũ cùng tư vấn, phát triển và vận hành theo nhu cầu thực tế của
+khách hàng.
 
 `wecare-site` là website catalog và kênh nhận yêu cầu tư vấn. Website không phải
 backend dùng chung cho các sản phẩm.
@@ -211,7 +212,7 @@ trực tiếp dashboard hoặc database của `wecare-license`.
 Khách hàng mô tả vấn đề
           |
           v
-Wecare DatV phân tích nhu cầu
+Đội ngũ Wecare Solutions phân tích nhu cầu
           |
           v
 Chọn solution hoặc đặt lịch trợ giảng

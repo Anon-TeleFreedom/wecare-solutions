@@ -1,8 +1,9 @@
-# Wecare DatV UI rules
+# Wecare Solutions UI rules
 
 ## 1. Brand and purpose
 
-- Present Wecare DatV as a solution ecosystem, not a single-product website.
+- Present Wecare Solutions as a team-built solution ecosystem, not a
+  single-product website.
 - Keep five catalog items visible: Wecare Incident, Wecare App Notify, Wecare
   Pages, Wecare GitOps and Wecare Mentor.
 - Support Vietnamese, English, and Simplified Chinese (`zh-CN`), with Vietnamese

@@ -2,8 +2,9 @@
 
 ## Project context
 
-This repository contains the public Wecare DatV catalog website. It presents
-independently developed technical solutions and the Wecare Mentor service.
+This repository contains the public Wecare Solutions catalog website. It presents
+technical solutions and the Wecare Mentor service developed and operated by a
+collaborative team.
 
 The catalog currently covers:
 
