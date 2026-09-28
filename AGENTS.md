@@ -100,8 +100,11 @@ JavaScript.
   user explicitly requests that exact action.
 - Update the relevant document when a lasting product, architecture,
   operational, or user-behavior decision changes.
-- Use normal punctuation. Do not use the em dash character, emoji, or decorative
-  icons in documents, code, comments, commit messages, or user-facing output.
+- Use normal ASCII punctuation. Never use the em dash character, non-breaking
+  spaces, emoji, or decorative symbols in source, docs, comments, commit
+  messages, or user-facing output.
+- Run `make check`; preserve its `check-style` gate and fix every violation
+  before committing or pushing.
 
 Safe local inspection and validation do not require confirmation. Ask the user
 only when a missing decision would materially change product scope, external
