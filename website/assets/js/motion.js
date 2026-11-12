@@ -3,11 +3,11 @@ const entranceAnimations = new Set();
 
 const REVEAL_GROUPS = [
   { selector: ".problem-grid > p", step: 80 },
-  { selector: "#solutions .section-heading > *", step: 100 },
-  { selector: ".solution-carousel", style: "scale" },
+  { selector: "#course .section-heading > *", step: 100 },
+  { selector: ".course-grid", style: "scale" },
   { selector: ".process-intro", style: "scale" },
   { selector: ".process-list > li", step: 80 },
-  { selector: "#integrations .section-heading > *", step: 100 },
+  { selector: "#capstone .section-heading > *", step: 100 },
   { selector: ".integration-list > span", step: 55 },
   { selector: ".integration-note" },
   { selector: ".fit-grid > div:first-child", style: "scale" },

@@ -36,6 +36,10 @@
     min-height: auto;
   }
 
+  .course-card {
+    min-height: auto;
+  }
+
   .process-intro {
     position: static;
   }
@@ -186,6 +190,10 @@
 
   .problem-grid p:last-child {
     border-bottom: 0;
+  }
+
+  .course-grid {
+    grid-template-columns: 1fr;
   }
 
   .section,
