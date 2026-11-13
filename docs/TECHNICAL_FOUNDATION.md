@@ -14,25 +14,27 @@ Mục tiêu:
 
 Không thuộc phạm vi repository:
 
-- Source code của các solution hoặc tool.
+- Source code và release artifact của các solution hoặc tool.
 - Backend platform dùng chung.
 - Dữ liệu hoặc thông tin truy cập của khách hàng.
 - Customer portal.
 - Thanh toán trực tuyến.
 - Dashboard vận hành.
-- License key, activation logic và dashboard quản trị license.
+- License key, private signing key, activation logic và dashboard quản trị license.
 
 Mỗi solution hoặc tool có repository và vòng đời riêng. Website chỉ chứa nội
 dung catalog, thông tin mua hàng và kênh liên hệ.
 
-Hệ thống quản lý license nằm trong repository private `wecare-license`. Hệ
-thống này sở hữu dữ liệu khách hàng, license key, trạng thái kích hoạt, thời hạn,
-thu hồi và audit. Dashboard, database, secret và source code của hệ thống không
-được đưa vào website public.
+Commercial control plane nằm trong repository private `wecare-license`. Hệ
+thống này sở hữu dữ liệu khách hàng, subscription, license key, trạng thái kích
+hoạt, thời hạn, thu hồi và audit. Dashboard, database, signing key, secret và
+source code của hệ thống không được đưa vào website public.
 
-Khi solution cần xác minh license online, solution chỉ gọi API activation tối
-thiểu của `wecare-license`. Website catalog không gọi API này và không chứa
-key hoặc logic kiểm tra license.
+Solution xác minh signed license cục bộ bằng public key nhúng trong release.
+Khi cần activation online, solution chỉ gọi API tối thiểu của `wecare-license`,
+lưu activation lease có thời hạn và áp dụng grace period khi control plane tạm
+thời không truy cập được. Website catalog không gọi API này và không chứa key
+hoặc logic kiểm tra license.
 
 ## 2. Nền tảng giao diện
 
@@ -110,7 +112,8 @@ Chỉ thêm asset hoặc thư mục khi có nội dung thực tế.
 
 - Dùng tiếng Việt rõ ràng, hạn chế thuật ngữ hạ tầng.
 - Mỗi section trả lời một câu hỏi của khách hàng.
-- Tập trung vào kết quả, phạm vi source code và nội dung guide.
+- Tập trung vào kết quả, edition, phạm vi sử dụng, release artifact, guide và hỗ
+  trợ.
 - Nói rõ mỗi solution là một project độc lập.
 - Luôn có đường dẫn rõ đến form tư vấn.
 - Không đưa số liệu, khách hàng hoặc cam kết chưa được kiểm chứng.
@@ -191,7 +194,7 @@ Trước khi triển khai website cần biết:
 - Domain chính thức.
 - Kênh nhận yêu cầu tư vấn.
 - Chính sách lưu dữ liệu liên hệ.
-- Quy trình báo giá, thanh toán ngân hàng và bàn giao source code.
+- Quy trình báo giá, thanh toán, cấp subscription/license và phân phối release.
 
 Khi self-host bằng Docker Compose, chỉ công khai cổng 80 và 443, đồng thời gắn
 phiên bản image cụ thể. Không thêm hạ tầng self-host khi chưa có yêu cầu thực tế.

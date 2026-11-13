@@ -66,7 +66,7 @@ a {
   position: sticky;
   z-index: 50;
   top: 0;
-  border-bottom: 1px solid rgba(16, 35, 31, 0.08);
+  border-bottom: 1px solid var(--line);
   background: var(--header-bg);
   backdrop-filter: blur(16px);
 }
@@ -86,15 +86,17 @@ a {
 }
 
 .brand-mark {
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   display: grid;
   place-items: center;
   color: var(--white);
   background: var(--forest);
-  border-radius: 10px;
-  font-size: 18px;
-  font-weight: 800;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 9px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: -0.08em;
 }
 
 .brand-copy {

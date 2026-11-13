@@ -1,17 +1,19 @@
 # Wecare Solutions
 
-Website catalog giới thiệu hệ sinh thái solution kỹ thuật và dịch vụ trợ giảng
-DevOps do đội ngũ Wecare Solutions cùng tư vấn, phát triển và vận hành cho đội kỹ
-thuật, doanh nghiệp, đội nội dung và người học. Giao diện hỗ trợ tiếng Việt,
-tiếng Anh và tiếng Trung giản thể.
+Website catalog giới thiệu phần mềm enterprise self-managed và dịch vụ trợ giảng
+DevOps do đội ngũ Wecare Solutions phát triển. Khách hàng triển khai phần mềm
+trên hạ tầng do họ kiểm soát và sử dụng theo subscription/license. Giao diện hỗ
+trợ tiếng Việt, tiếng Anh và tiếng Trung giản thể.
 
-Khách hàng có thể mua solution kèm source code và guide, hoặc đặt lịch Wecare
-Mentor với giá 200.000đ cho 60 phút. Mỗi solution hoặc tool nằm trong một
-project riêng và không được đưa vào repository này.
+Khách hàng nhận binary, container image hoặc Helm package có phiên bản, kèm tài
+liệu triển khai, cập nhật và hỗ trợ theo gói đã mua. Source code không phải nội
+dung bàn giao mặc định. Wecare Mentor có giá 200.000đ cho 60 phút. Mỗi solution
+hoặc tool nằm trong một project riêng và không được đưa vào repository này.
 
-License của các solution được quản lý trong repository private
-`wecare-license`. Website public này không chứa license key, dashboard quản
-trị hoặc logic kích hoạt.
+Subscription và license của các solution được quản lý trong repository private
+`wecare-license`, là commercial control plane của hệ thống. Website public này
+không chứa license key, private signing key, dashboard quản trị hoặc logic kích
+hoạt.
 
 ## Chạy giao diện
 

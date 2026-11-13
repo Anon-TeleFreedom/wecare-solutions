@@ -16,13 +16,20 @@ The catalog currently covers:
 
 This repository is not a SaaS backend, monitoring platform, customer dashboard,
 payment system, or source repository for any listed solution. Each solution has
-its own repository, source code, guide, and lifecycle.
+its own private repository, release artifacts, deployment guide, and lifecycle.
+
+Commercial solutions are self-managed enterprise software. Customers deploy a
+versioned binary, container image, or Helm package in infrastructure they
+control and receive usage rights, updates, and support through a subscription.
+Source code is not a standard deliverable and is provided only under a separate
+approved agreement.
 
 The main conversion is a consultation request. Payment is arranged manually by
 bank transfer after the scope and price are confirmed.
 
-A separate private repository, `wecare-license`, owns internal customer,
-license-key, activation, expiration, revocation, and audit management. Its
+A separate private repository, `wecare-license`, is the commercial control
+plane for customer, subscription, license, activation, expiration, revocation,
+and audit management. Its
 administration interface, database, secrets, and source code are private. This
 public catalog must not contain license keys or license-management logic.
 

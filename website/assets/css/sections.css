@@ -1,63 +1,236 @@
-.process-section {
-  color: var(--white);
-  background: var(--forest-dark);
-}
-
-.process-section .eyebrow {
-  color: var(--mint);
-}
-
-.process-grid {
+.topic-roadmap-layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(460px, 1.2fr);
-  gap: 100px;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.9fr);
+  align-items: start;
+  gap: 28px;
 }
 
-.process-intro {
-  position: sticky;
-  top: 130px;
-  align-self: start;
-}
-
-.process-intro p:not(.eyebrow) {
-  max-width: 500px;
-  color: rgba(255, 255, 255, 0.66);
-}
-
-.process-intro .button {
-  margin-top: 18px;
-}
-
-.process-list {
+.course-roadmap-list {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.process-list li {
-  padding: 30px 0;
+.course-roadmap-list > li {
+  position: relative;
+  padding: 18px 0;
   display: grid;
-  grid-template-columns: 60px 1fr;
-  gap: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 16px;
+  border-top: 1px solid var(--line);
 }
 
-.process-list li > span {
-  color: var(--mint);
-  font-size: 13px;
+.course-roadmap-list > li:not(:last-child)::after {
+  position: absolute;
+  top: 52px;
+  bottom: -18px;
+  left: 17px;
+  border-left: 1px dashed var(--line);
+  content: "";
+}
+
+.course-roadmap-number {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  color: var(--white);
+  background: var(--forest);
+  border-radius: 11px;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.course-roadmap-list > li:nth-child(2) .course-roadmap-number {
+  color: var(--ink);
+  background: var(--amber);
+}
+
+.course-roadmap-kicker {
+  margin: 0 0 4px;
+  color: var(--link);
+  font-size: 10px;
   font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.process-list h3 {
-  margin-bottom: 9px;
+.course-roadmap-list h3 {
+  margin: 0 0 6px;
+  font-size: 19px;
+}
+
+.course-roadmap-description {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.course-roadmap-points {
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 6px;
+  list-style: none;
+}
+
+.course-roadmap-points li {
+  padding: 4px 8px;
+  color: var(--ink-soft);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.roadmap-map {
+  padding: 24px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+}
+
+.roadmap-map-heading {
+  margin-bottom: 4px;
+}
+
+.roadmap-map-heading h3 {
+  margin-bottom: 0;
   font-size: 22px;
 }
 
-.process-list p {
-  max-width: 500px;
+.roadmap-map-canvas {
+  position: relative;
+  margin-top: 18px;
+}
+
+.roadmap-track {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.roadmap-track path {
+  fill: none;
+  stroke: var(--link);
+  stroke-width: 4;
+  stroke-dasharray: 6 8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.roadmap-points {
+  position: relative;
+  z-index: 1;
   margin: 0;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 14px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(105px, auto));
+  list-style: none;
+}
+
+.roadmap-points li {
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 750;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.roadmap-points li:nth-child(1) {
+  grid-area: 1 / 1;
+}
+
+.roadmap-points li:nth-child(2) {
+  grid-area: 1 / 2;
+}
+
+.roadmap-points li:nth-child(3) {
+  grid-area: 1 / 3;
+}
+
+.roadmap-points li:nth-child(4) {
+  grid-area: 2 / 3;
+}
+
+.roadmap-points li:nth-child(5) {
+  grid-area: 2 / 2;
+}
+
+.roadmap-points li:nth-child(6) {
+  grid-area: 2 / 1;
+}
+
+.roadmap-points li:nth-child(7) {
+  grid-area: 3 / 1;
+}
+
+.roadmap-points li:nth-child(8) {
+  grid-area: 3 / 2;
+}
+
+.roadmap-points li:nth-child(9) {
+  grid-area: 3 / 3;
+}
+
+.roadmap-point-number {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  color: var(--mint);
+  background: var(--forest-dark);
+  border: 1px solid rgba(204, 232, 220, 0.38);
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px var(--forest-dark);
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.roadmap-points li > span:last-child {
+  position: relative;
+  z-index: 2;
+  max-width: 140px;
+  padding: 2px 6px;
+  background: var(--paper);
+  border-radius: 6px;
+  transition: color 180ms ease;
+}
+
+.roadmap-point-capstone .roadmap-point-number {
+  color: var(--forest-dark);
+  background: var(--amber);
+  border-color: var(--amber);
+}
+
+.roadmap-point-number {
+  transition:
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .roadmap-points li:hover .roadmap-point-number {
+    transform: translateY(-2px) scale(1.08);
+    box-shadow: 0 0 0 5px var(--forest-dark), 0 0 18px rgba(16, 51, 43, 0.22);
+  }
+
+  .roadmap-points li:hover > span:last-child {
+    color: var(--link);
+  }
 }
 
 .integrations-section {
@@ -153,7 +326,7 @@
 
 .contact-copy > p:not(.eyebrow) {
   max-width: 540px;
-  color: rgba(255, 255, 255, 0.68);
+  color: var(--contact-copy);
 }
 
 .advisor {
@@ -183,7 +356,7 @@
 }
 
 .advisor span {
-  color: rgba(255, 255, 255, 0.62);
+  color: var(--contact-secondary);
   font-size: 12px;
 }
 
@@ -202,36 +375,209 @@
 .contact-details p > span:first-child {
   margin-bottom: 4px;
   display: block;
-  color: rgba(255, 255, 255, 0.48);
+  color: var(--contact-label);
   font-size: 10px;
   font-weight: 750;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.contact-details .course-price {
+.schedule-trigger {
+  grid-column: 1 / -1;
+  padding: 11px 14px;
+  display: grid;
+  gap: 4px;
+  color: inherit;
+  text-align: left;
+  background: var(--contact-panel);
+  border: 1px solid var(--contact-panel-border);
+  border-radius: 12px;
+  cursor: pointer;
+  font: inherit;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease;
+}
+
+.schedule-trigger > span:first-child {
+  color: var(--contact-label);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.schedule-trigger-hint {
+  color: var(--mint);
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.schedule-trigger:hover,
+.schedule-trigger:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--mint);
+}
+
+.schedule-trigger:focus-visible,
+.schedule-dialog-close:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 3px;
+}
+
+.course-schedule-dialog {
+  width: min(760px, calc(100vw - 32px));
+  max-width: none;
+  max-height: min(84vh, 820px);
+  margin: auto;
+  padding: 26px;
+  overflow: auto;
+  color: #17332c;
+  background: #ffffff;
+  border: 1px solid #d5e2db;
+  border-radius: var(--radius-large);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+}
+
+.course-schedule-dialog::backdrop {
+  background: rgba(7, 30, 25, 0.66);
+  backdrop-filter: blur(4px);
+}
+
+.schedule-dialog-header {
+  margin-bottom: 22px;
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.schedule-dialog-header .eyebrow {
+  margin-bottom: 8px;
+  color: #356d57;
+}
+
+.schedule-dialog-header h2 {
+  margin-bottom: 8px;
+  font-size: clamp(24px, 4vw, 32px);
+}
+
+.schedule-dialog-header p:last-child {
+  max-width: 600px;
+  margin-bottom: 0;
+  color: #596b63;
+  font-size: 14px;
+}
+
+.schedule-dialog-close {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  color: #17332c;
+  background: #f5f8f6;
+  border: 1px solid #d5e2db;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.course-session-list {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  list-style: none;
+}
+
+.course-session-list li {
+  min-width: 0;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-content: start;
+  gap: 10px;
+  background: #f7f9f7;
+  border: 1px solid #dce6e0;
+  border-radius: 12px;
+}
+
+.course-session-number {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  color: #174a39;
+  background: #e4f2eb;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.course-session-list h3 {
+  margin: 2px 0 5px;
+  font-size: 14px;
+}
+
+.course-session-list p {
+  margin: 0;
+  color: #576a62;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.course-session-list .course-session-capstone {
+  grid-column: 1 / -1;
+  background: #edf7f2;
+  border-color: #b9d8c8;
+}
+
+.course-price-card {
+  margin-top: 20px;
+  padding: 14px 18px;
+  background: var(--contact-panel);
+  border: 1px solid rgba(230, 173, 75, 0.32);
+  border-radius: 14px;
+}
+
+.course-price-label {
+  margin-bottom: 8px;
+  display: block;
+  color: var(--contact-label);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.course-price {
+  display: flex;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 5px 8px;
+  gap: 8px 12px;
+  line-height: 1.2;
 }
 
 .course-price del {
-  color: rgba(255, 255, 255, 0.55);
-  font-size: 12px;
+  color: var(--contact-secondary);
+  font-size: 14px;
 }
 
 .course-price strong {
   color: #ffd0a8;
-  font-size: 16px;
+  font-size: clamp(22px, 2.1vw, 28px);
+  letter-spacing: -0.035em;
 }
 
 .course-discount {
-  padding: 2px 6px;
+  padding: 5px 9px;
   color: var(--forest-dark);
-  background: var(--mint);
+  background: var(--amber);
   border-radius: 999px;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 800;
 }
 
@@ -272,7 +618,7 @@
   padding: 10px 12px;
   color: var(--ink);
   background: var(--paper);
-  border: 1px solid #d6d8d1;
+  border: 1px solid var(--form-border);
   border-radius: 10px;
   outline: none;
 }
@@ -285,7 +631,7 @@
 .form-row select:focus,
 .form-row textarea:focus {
   border-color: var(--forest);
-  box-shadow: 0 0 0 3px rgba(18, 63, 53, 0.12);
+  box-shadow: 0 0 0 3px var(--form-focus-ring);
 }
 
 .form-row [aria-invalid="true"] {
@@ -330,8 +676,9 @@
 
 .form-note {
   margin: 8px 0 0;
-  color: var(--ink-soft);
-  font-size: 11px;
+  color: var(--form-note);
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 .form-status {

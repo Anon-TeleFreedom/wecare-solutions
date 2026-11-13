@@ -2,9 +2,9 @@
 
 ## 1. Định vị
 
-Wecare Solutions là hệ sinh thái solution kỹ thuật và dịch vụ trợ giảng DevOps
-do một đội ngũ cùng tư vấn, phát triển và vận hành theo nhu cầu thực tế của
-khách hàng.
+Wecare Solutions phát triển phần mềm enterprise self-managed cho đội kỹ thuật
+và cung cấp dịch vụ trợ giảng DevOps. Khách hàng triển khai sản phẩm trên hạ
+tầng do họ kiểm soát và sử dụng theo subscription/license.
 
 `wecare-site` là website catalog và kênh nhận yêu cầu tư vấn. Website không phải
 backend dùng chung cho các sản phẩm.
@@ -12,9 +12,14 @@ backend dùng chung cho các sản phẩm.
 Mỗi solution:
 
 - Là một project và repository độc lập.
-- Có phạm vi, source code, guide và lộ trình riêng.
+- Có phạm vi, release artifact, deployment guide và lộ trình riêng.
 - Có thể chạy độc lập hoặc tích hợp với solution khác qua API.
 - Chỉ được giới thiệu là sẵn sàng khi đã được kiểm thử.
+- Được phân phối bằng binary, container image hoặc Helm package có phiên bản.
+- Không bàn giao source code theo gói tiêu chuẩn.
+
+Wecare chỉ phát triển một core product tại một thời điểm. Các solution còn lại
+là hướng nghiên cứu cho đến khi có bằng chứng nhu cầu hoặc design partner.
 
 ## 2. Danh mục solution
 
@@ -183,30 +188,40 @@ wecare-license
 `wecare-site` là catalog public. Không gom source code của các solution vào
 repository này hoặc vào một monorepo chung chỉ để tiện phát triển ban đầu.
 
-`wecare-license` là repository private và là hệ thống vận hành nội bộ, không
-phải solution được quảng bá hoặc bàn giao source cho khách hàng. Hệ thống này
-quản lý khách hàng, sản phẩm, license key, kích hoạt, thời hạn, thu hồi và lịch
-sử kiểm tra license.
+`wecare-license` là repository private và là commercial control plane, không
+phải solution được quảng bá hoặc cài trong hệ thống khách hàng. Hệ thống này
+quản lý khách hàng, subscription, sản phẩm, license key, kích hoạt, thời hạn,
+thu hồi và lịch sử kiểm tra license.
 
 Dashboard quản trị, database, secret và logic cấp license của
 `wecare-license` phải giữ private. Nếu tool của khách cần kiểm tra license
 online, chỉ API activation tối thiểu được công khai qua mạng. API phải có xác
 thực phù hợp, rate limit và không làm lộ dữ liệu quản trị nội bộ.
 
-`wecare-site` không chứa license key, giao diện quản trị license hoặc logic
-kích hoạt. Các solution chỉ tích hợp với API xác minh license và không truy cập
-trực tiếp dashboard hoặc database của `wecare-license`.
+`wecare-site` không chứa license key, private signing key, giao diện quản trị
+license hoặc logic kích hoạt. Solution chỉ dùng public key để xác minh license
+đã ký và, khi được cấu hình, gọi activation API tối thiểu. Solution không truy
+cập trực tiếp dashboard hoặc database của `wecare-license`.
+
+Mỗi solution phải tiếp tục phục vụ workload hiện có trong grace period khi
+control plane tạm thời không truy cập được. Doanh nghiệp air-gapped phải có thể
+dùng signed offline license. Giới hạn thương mại ưu tiên cluster, node, resource
+unit hoặc feature thay vì hardware fingerprint không ổn định của container.
 
 ## 5. Khách hàng mục tiêu
 
 - Đội DevOps, Platform và SRE.
-- Đội phát triển phần mềm cần chuẩn hóa triển khai.
-- Doanh nghiệp cần công cụ phù hợp với quy trình nội bộ.
-- Đội marketing hoặc content vận hành nhiều kênh.
-- Đội kỹ thuật nhỏ muốn self-host và làm chủ dữ liệu.
+- Đội phát triển phần mềm cần chuẩn hóa vận hành và triển khai.
+- Doanh nghiệp cần self-host để kiểm soát dữ liệu, mạng và cấu hình.
+- Đội kỹ thuật nhỏ cần sản phẩm có tài liệu và hỗ trợ thay vì tự ghép nhiều công
+  cụ rời rạc.
 - Người học, developer chuyển hướng sang DevOps hoặc cần trợ giảng theo giờ.
 
-## 6. Mô hình tư vấn và bàn giao
+Đội marketing hoặc content chỉ là khách hàng mục tiêu của Wecare Pages sau khi
+ý tưởng này có design partner. Nhóm này không chi phối định vị enterprise hiện
+tại của Wecare Solutions.
+
+## 6. Mô hình thương mại và triển khai
 
 ```text
 Khách hàng mô tả vấn đề
@@ -218,14 +233,21 @@ Khách hàng mô tả vấn đề
 Chọn solution hoặc đặt lịch trợ giảng
           |
           v
-Chốt phạm vi và báo giá
+Chốt edition, phạm vi sử dụng, thời hạn và hỗ trợ
           |
           v
-Bàn giao solution hoặc thực hiện buổi trợ giảng
+Cấp subscription/license và release artifact
+          |
+          v
+Khách triển khai self-managed hoặc tham gia buổi trợ giảng
 ```
 
+Gói phần mềm tiêu chuẩn cung cấp quyền sử dụng, binary/container image/Helm
+package, deployment guide, cập nhật và hỗ trợ theo hợp đồng. Source code chỉ
+được cung cấp theo thỏa thuận riêng được phê duyệt, ví dụ source escrow.
+
 Thanh toán trước mắt qua chuyển khoản ngân hàng. Không hard-code email cá nhân,
-thông tin ngân hàng, credentials hoặc secret vào repository.
+thông tin ngân hàng, credentials, signing key hoặc secret vào repository.
 
 ## 7. Nguyên tắc nội dung công khai
 
@@ -233,17 +255,19 @@ thông tin ngân hàng, credentials hoặc secret vào repository.
 - Chỉ công bố tên hoặc logo khi đã có sự đồng ý.
 - Không tuyên bố tính năng hoặc tích hợp đã sẵn sàng khi chưa kiểm thử.
 - Không gây hiểu nhầm về quan hệ với sản phẩm tham chiếu hoặc bên thứ ba.
-- Dùng giá trị có thể kiểm chứng như source bàn giao, self-hosted và guide.
+- Dùng giá trị có thể kiểm chứng như release artifact, self-hosted, guide, cập
+  nhật và phạm vi hỗ trợ.
 - Có thể mời khách hàng tham gia design partner để tạo bằng chứng sử dụng thật.
 
 ## 8. Thứ tự phát triển
 
 1. Mở lịch Wecare Mentor với phạm vi và giá công khai.
-2. Chốt MVP và xây Wecare Incident trước.
-3. Ổn định API sự kiện giữa Wecare Incident và Wecare App Notify.
-4. Xây Wecare App Notify với phạm vi notification và xử lý incident.
-5. Xác thực nhu cầu và API nền tảng trước khi xây Wecare Pages.
-6. Chốt bộ công cụ mặc định trước khi xây Wecare GitOps.
+2. Phỏng vấn khách hàng và tìm ít nhất một design partner cho Wecare Incident.
+3. Chốt một workflow có giá trị đo được và xây core product trước.
+4. Đóng gói release artifact và deployment guide có thể cài đặt lặp lại.
+5. Tích hợp signed license tối thiểu, activation lease và grace period.
+6. Chỉ xây Wecare App Notify sau khi workflow incident cốt lõi đã được dùng.
+7. Xác thực nhu cầu riêng trước khi đầu tư vào Wecare Pages hoặc Wecare GitOps.
 
 Không phát triển đồng thời cả bốn backend ở giai đoạn đầu.
 
@@ -253,7 +277,7 @@ Không phát triển đồng thời cả bốn backend ở giai đoạn đầu.
 - Dashboard sản phẩm thật.
 - Tài khoản khách hàng.
 - Thanh toán online.
-- Kho source code của solution.
+- Release artifact của solution.
 - Dữ liệu vận hành hoặc social account của khách hàng.
 
 ## 10. Việc cần làm tiếp theo
@@ -261,10 +285,13 @@ Không phát triển đồng thời cả bốn backend ở giai đoạn đầu.
 - [x] Chốt bốn solution và một dịch vụ mentor trong catalog.
 - [x] Công khai mức giá Wecare Mentor.
 - [x] Tách ranh giới repository.
-- [x] Tách `wecare-license` thành repository private để quản lý license nội bộ.
+- [x] Tách `wecare-license` thành repository private làm commercial control plane.
 - [x] Chọn Versus Incident làm tham chiếu cho luồng incident.
+- [x] Chốt mô hình enterprise self-managed theo subscription/license.
+- [ ] Tìm design partner và xác nhận workflow đầu tiên có giá trị đo được.
 - [ ] Chốt MVP của Wecare Incident.
 - [ ] Chọn stack kỹ thuật và event schema.
 - [ ] Tạo repository `wecare-incident`.
 - [ ] Thiết kế API webhook đầu tiên.
+- [ ] Chốt license claim, offline verification, activation lease và grace period.
 - [ ] Xác thực nhu cầu riêng cho Wecare Pages và Wecare GitOps.

@@ -63,7 +63,8 @@ Chỉ quản lý chuyển động giao diện:
 - Entrance animation ở hero.
 - Reveal một lần khi nội dung đi vào viewport.
 - Khởi tạo chuyển động nền nhẹ trong preview.
-- Đếm số danh mục `05` từ `00` khi preview đi vào màn hình lần đầu.
+- Đếm giá trị trọng tâm sản phẩm trong preview từ `00` đến giá trị khai báo
+  trong HTML khi preview đi vào màn hình lần đầu.
 - Chạy hoạt ảnh cột và vệt quét ngang trong biểu đồ preview.
 - Vẽ từng cột biểu đồ từ chân lên khi preview xuất hiện.
 - Tạm dừng chuyển động nền khi preview ngoài màn hình hoặc tab bị ẩn.

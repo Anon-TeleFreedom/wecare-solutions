@@ -12,7 +12,6 @@
   }
 
   .hero-grid,
-  .process-grid,
   .fit-grid,
   .contact-grid {
     grid-template-columns: 1fr;
@@ -34,14 +33,6 @@
 
   .solution-card {
     min-height: auto;
-  }
-
-  .course-card {
-    min-height: auto;
-  }
-
-  .process-intro {
-    position: static;
   }
 
   .integration-list {
@@ -192,10 +183,6 @@
     border-bottom: 0;
   }
 
-  .course-grid {
-    grid-template-columns: 1fr;
-  }
-
   .section,
   .contact-section {
     padding: 42px 0;
@@ -232,15 +219,6 @@
     gap: 14px;
   }
 
-  .process-grid {
-    gap: 40px;
-  }
-
-  .process-list li {
-    grid-template-columns: 42px 1fr;
-    gap: 12px;
-  }
-
   .integration-list {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -252,6 +230,18 @@
 
   .contact-details {
     grid-template-columns: 1fr;
+  }
+
+  .course-schedule-dialog {
+    padding: 20px;
+  }
+
+  .course-session-list {
+    grid-template-columns: 1fr;
+  }
+
+  .course-session-list .course-session-capstone {
+    grid-column: auto;
   }
 
   .contact-form {
@@ -270,6 +260,64 @@
 
   .footer-links {
     flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 540px) {
+  .roadmap-map {
+    padding: 18px;
+  }
+
+  .roadmap-map-canvas {
+    position: relative;
+    padding-left: 2px;
+  }
+
+  .roadmap-map-canvas::before {
+    position: absolute;
+    top: 18px;
+    bottom: 18px;
+    left: 19px;
+    border-left: 2px dashed var(--link);
+    content: "";
+    opacity: 0.6;
+  }
+
+  .roadmap-track {
+    display: none;
+  }
+
+  .roadmap-points {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: 4px;
+  }
+
+  .roadmap-points li,
+  .roadmap-points li:nth-child(n) {
+    min-height: 56px;
+    padding: 4px 0;
+    display: grid;
+    grid-area: auto;
+    grid-template-columns: 36px minmax(0, 1fr);
+    justify-items: start;
+    gap: 12px;
+    text-align: left;
+  }
+
+  .roadmap-point-number {
+    width: 36px;
+    height: 36px;
+  }
+
+  .roadmap-points li > span:last-child {
+    max-width: none;
+  }
+}
+
+@media (max-width: 1120px) {
+  .topic-roadmap-layout {
+    grid-template-columns: 1fr;
   }
 }
 

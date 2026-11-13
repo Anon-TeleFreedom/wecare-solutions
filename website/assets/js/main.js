@@ -9,7 +9,29 @@ const themeToggle = document.querySelector(".theme-toggle");
 const themeColor = document.querySelector('meta[name="theme-color"]');
 const scrollTopButton = document.querySelector(".scroll-top");
 const topSection = document.querySelector("#top");
+const scheduleTrigger = document.querySelector(".schedule-trigger");
+const scheduleDialog = document.querySelector("#course-schedule-dialog");
 const translate = window.siteI18n.getTranslation;
+
+scheduleTrigger.addEventListener("click", () => scheduleDialog.showModal());
+scheduleDialog
+  .querySelector(".schedule-dialog-close")
+  .addEventListener("click", () => scheduleDialog.close());
+scheduleDialog.addEventListener("click", (event) => {
+  if (event.target === scheduleDialog) {
+    scheduleDialog.close();
+  }
+});
+scheduleDialog.addEventListener("cancel", (event) => {
+  event.preventDefault();
+  scheduleDialog.close();
+});
+scheduleDialog.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    event.preventDefault();
+    scheduleDialog.close();
+  }
+});
 
 function setTheme(theme) {
   const isDark = theme === "dark";

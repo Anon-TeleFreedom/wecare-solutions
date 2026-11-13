@@ -2,11 +2,12 @@
   <rect width="64" height="64" rx="16" fill="#123f35"/>
   <text
     x="32"
-    y="41"
+    y="39"
     fill="#ffffff"
     font-family="Arial, sans-serif"
-    font-size="21"
-    font-weight="700"
+    font-size="17"
+    font-weight="800"
+    letter-spacing="-1"
     text-anchor="middle"
-  >RV</text>
+  >RDV</text>
 </svg>

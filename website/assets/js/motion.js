@@ -4,9 +4,7 @@ const entranceAnimations = new Set();
 const REVEAL_GROUPS = [
   { selector: ".problem-grid > p", step: 80 },
   { selector: "#course .section-heading > *", step: 100 },
-  { selector: ".course-grid", style: "scale" },
-  { selector: ".process-intro", style: "scale" },
-  { selector: ".process-list > li", step: 80 },
+  { selector: ".course-roadmap-list > li", step: 80 },
   { selector: "#capstone .section-heading > *", step: 100 },
   { selector: ".integration-list > span", step: 55 },
   { selector: ".integration-note" },
@@ -121,6 +119,25 @@ function initializeScrollReveal() {
     document.querySelectorAll(".reveal-pending").forEach((element) => {
       element.classList.add("is-visible");
     });
+  });
+}
+
+function initializeRoadmapMotion() {
+  if (reducedMotionQuery.matches || !("IntersectionObserver" in window)) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("roadmap-motion-active");
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.18 },
+  );
+
+  document.querySelectorAll(".roadmap-map").forEach((map) => {
+    observer.observe(map);
   });
 }
 
@@ -273,6 +290,7 @@ reducedMotionQuery.addEventListener("change", (event) => {
 
 animatePageEntrance();
 initializeScrollReveal();
+initializeRoadmapMotion();
 initializeAmbientMotion();
 initializeScrollProgress();
 initializePreviewSpotlight();
